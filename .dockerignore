@@ -1,0 +1,46 @@
+# ===============================
+# Neural Gate v3.1 - .dockerignore
+# ===============================
+
+# Git
+.git
+.gitignore
+
+# Python cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv
+env
+.venv
+
+# Environment files
+.env
+.env.*
+
+# Logs
+*.log
+logs
+
+# Recordings
+recordings
+*.wav
+*.mp3
+*.ogg
+
+# SQLite
+*.sqlite3
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints

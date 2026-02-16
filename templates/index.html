@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Neural Gate v3.1 | Ahmed Zarai AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --neon-cyan: #00f5ff;
+            --deep-bg: #030a10;
+            --glass: rgba(0, 20, 40, 0.7);
+            --alert-red: #ff003c;
+            --border-glow: rgba(0, 245, 255, 0.3);
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Orbitron', sans-serif; }
+
+        body {
+            height: 100vh;
+            overflow: hidden; /* Lock the whole screen */
+            background: var(--deep-bg);
+            background-image: 
+                radial-gradient(circle at 50% 50%, #1a3a4a 0%, #030a10 100%),
+                linear-gradient(rgba(0, 245, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 245, 255, 0.05) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--neon-cyan);
+        }
+
+        .header {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to bottom, rgba(0,245,255,0.1), transparent);
+            text-align: center;
+            z-index: 10;
+            border-bottom: 1px solid var(--border-glow);
+        }
+
+        .header h1 {
+            font-size: 1.4rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #fff, var(--neon-cyan));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px var(--neon-cyan));
+        }
+
+        .status-pill {
+            position: absolute;
+            top: 85px;
+            right: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0,0,0,0.6);
+            padding: 8px 18px;
+            border-radius: 50px;
+            border: 1px solid var(--neon-cyan);
+            box-shadow: 0 0 15px var(--border-glow);
+            z-index: 5;
+        }
+
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--alert-red);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--alert-red);
+            animation: pulseRed 1.5s infinite;
+        }
+
+        @keyframes pulseRed {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.4; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .status-text { font-size: 0.7rem; font-weight: bold; color: #fff; letter-spacing: 1px; }
+
+        .container {
+            width: 95%;
+            max-width: 1600px;
+            display: grid;
+            grid-template-columns: 1fr 340px; /* Slimmer sidebar */
+            gap: 20px;
+            height: 70vh; /* Controlled height */
+            margin-top: 100px;
+        }
+
+        .video-panel {
+            position: relative;
+            background: #000;
+            border-radius: 8px;
+            border: 1px solid var(--border-glow);
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+        }
+
+        .video-panel img { width: 100%; height: 100%; object-fit: contain; }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            height: 100%;
+        }
+
+        .card {
+            background: var(--glass);
+            border-left: 3px solid var(--neon-cyan);
+            padding: 12px 15px;
+            border-radius: 4px;
+            backdrop-filter: blur(10px);
+        }
+
+        .chart-card {
+            flex-grow: 1; /* Fills remaining space */
+            display: flex;
+            flex-direction: column;
+            min-height: 0; 
+        }
+
+        .card h3 { font-size: 0.65rem; letter-spacing: 1px; margin-bottom: 5px; color: rgba(255,255,255,0.6); }
+
+        .metric { font-size: 24px; font-weight: 700; color: var(--neon-cyan); }
+
+        /* Fix the chart container height */
+        .chart-container { flex-grow: 1; position: relative; min-height: 150px; width: 100%; }
+
+        footer {
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header"><h1>Neural Gate // Autonomous Intelligence Capture</h1></div>
+
+    <div class="status-pill">
+        <div class="live-dot"></div>
+        <span class="status-text">SYSTEM LIVE</span>
+    </div>
+
+    <div class="container">
+        <div class="video-panel"><img id="videoFeed"></div>
+
+        <div class="sidebar">
+            <div class="card"><h3>TARGET COUNT</h3><div id="people" class="metric">00</div></div>
+            <div class="card"><h3>AVG VELOCITY</h3><div id="velocity" class="metric">0.0</div></div>
+            <div class="card"><h3>THREAT LEVEL</h3><div id="threat" class="metric">STABLE</div></div>
+            
+            <div class="card chart-card">
+                <h3>VELOCITY TREND</h3>
+                <div class="chart-container">
+                    <canvas id="velocityChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="card" style="padding: 8px; font-size: 0.6rem;">
+                FPS: <span id="fps">0</span> | UPTIME: <span id="uptime">0</span>s
+            </div>
+        </div>
+    </div>
+
+    <footer>⚡ SECURED BY <span>AHMED ZARAI</span> | BIOMETRIC HUB V3.1</footer>
+
+    <script>
+        const socket = io();
+        const img = document.getElementById('videoFeed');
+        const threatElem = document.getElementById('threat');
+
+        let history = [];
+        const ctx = document.getElementById('velocityChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    data: [],
+                    borderColor: '#00f5ff',
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    tension: 0.4,
+                    fill: true,
+                    backgroundColor: 'rgba(0, 245, 255, 0.1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { 
+                    x: { display: false }, 
+                    y: { display: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#00f5ff', font: { size: 9 } } }
+                }
+            }
+        });
+
+        socket.on('frame', function(data) {
+            img.src = "data:image/jpeg;base64," + data.image;
+            const m = data.metrics;
+            document.getElementById('people').innerText = m.people.toString().padStart(2, '0');
+            document.getElementById('velocity').innerText = m.velocity.toFixed(1);
+            document.getElementById('fps').innerText = m.fps;
+            document.getElementById('uptime').innerText = m.uptime;
+            threatElem.innerText = m.threat_state;
+            
+            history.push(m.velocity);
+            if(history.length > 30) history.shift();
+            chart.data.labels = history.map((_, i) => i);
+            chart.data.datasets[0].data = history;
+            chart.update('none');
+        });
+    </script>
+</body>
+</html>
+
+
