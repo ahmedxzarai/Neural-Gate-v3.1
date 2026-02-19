@@ -105,6 +105,9 @@ This enables detection of emergent instability rather than isolated anomalies.
 
 # 🚨 Deterministic Threat Escalation
 
+<details>
+<summary><b>🔍 Click to expand: Threat Logic & Transitions</b></summary>
+
 ### 🛡️ Threat Management Protocol
 The system transitions between operational states based on the calculated **Panic Index ($P$)**:
 
@@ -152,6 +155,7 @@ The system automatically:
 
 No operator intervention required.
 
+</details>
 ---
 
 # 🧩 Smart Input Engine
