@@ -1,113 +1,105 @@
-<svg viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1400 600" xmlns="http://www.w3.org/2000/svg">
 
   <!-- Background -->
-  <rect width="1200" height="520" fill="#070A12"/>
+  <rect width="1400" height="600" fill="#050810"/>
 
-  <!-- Subtle Grid -->
+  <!-- Subtle Gradient Glow -->
   <defs>
-    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M40 0 L0 0 0 40" fill="none" stroke="#111827" stroke-width="1"/>
-    </pattern>
+    <radialGradient id="bgGlow" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#050810"/>
+    </radialGradient>
   </defs>
-  <rect width="1200" height="520" fill="url(#grid)" opacity="0.4"/>
+  <rect width="1400" height="600" fill="url(#bgGlow)"/>
 
-  <!-- Gradients -->
+  <!-- Glow Filter -->
   <defs>
-    <linearGradient id="glass" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="white" stop-opacity="0.07"/>
-      <stop offset="100%" stop-color="white" stop-opacity="0.02"/>
-    </linearGradient>
-
-    <linearGradient id="neonStroke" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00F0FF"/>
-      <stop offset="100%" stop-color="#7C3AED"/>
-    </linearGradient>
-
     <filter id="glow">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
+
+    <linearGradient id="neonLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00F0FF"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+
+    <linearGradient id="glass3D" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="white" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0.02"/>
+    </linearGradient>
   </defs>
 
   <!-- Title -->
-  <text x="600" y="60"
+  <text x="700" y="70"
         text-anchor="middle"
         fill="#00F0FF"
+        font-size="28"
         font-family="Segoe UI"
-        font-size="26"
-        letter-spacing="4"
+        letter-spacing="5"
         filter="url(#glow)">
         NEURAL GATE v3.1
   </text>
 
-  <text x="600" y="90"
+  <text x="700" y="100"
         text-anchor="middle"
         fill="#9CA3AF"
-        font-family="Segoe UI"
         font-size="14"
+        font-family="Segoe UI"
         letter-spacing="2">
-        Real-Time Behavioral Intelligence Pipeline
+        3D Behavioral Intelligence Pipeline
   </text>
 
-  <!-- Flow Lines -->
-  <g opacity="0.6">
+  <!-- Perspective Platform -->
+  <polygon points="150,420 1250,420 1150,480 250,480"
+           fill="#0B1220"
+           opacity="0.6"/>
 
-    <path d="M200 260 H350" stroke="#1F2937" stroke-width="2"/>
-    <path d="M200 260 H350"
-          stroke="url(#neonStroke)"
+  <!-- Flow Lines -->
+  <g opacity="0.7">
+
+    <path d="M300 300 C400 250, 500 250, 600 300"
+          stroke="url(#neonLine)"
           stroke-width="3"
-          stroke-dasharray="8 120"
+          fill="none"
+          stroke-dasharray="10 140"
           filter="url(#glow)">
       <animate attributeName="stroke-dashoffset"
                from="0"
-               to="-128"
+               to="-150"
                dur="3s"
                repeatCount="indefinite"/>
     </path>
 
-    <path d="M500 260 H650" stroke="#1F2937" stroke-width="2"/>
-    <path d="M500 260 H650"
-          stroke="url(#neonStroke)"
+    <path d="M650 300 C750 250, 850 250, 950 300"
+          stroke="url(#neonLine)"
           stroke-width="3"
-          stroke-dasharray="8 120"
+          fill="none"
+          stroke-dasharray="10 140"
           filter="url(#glow)">
       <animate attributeName="stroke-dashoffset"
                from="0"
-               to="-128"
+               to="-150"
                dur="3s"
                begin="0.5s"
                repeatCount="indefinite"/>
     </path>
 
-    <path d="M800 260 H950" stroke="#1F2937" stroke-width="2"/>
-    <path d="M800 260 H950"
-          stroke="url(#neonStroke)"
-          stroke-width="3"
-          stroke-dasharray="8 120"
-          filter="url(#glow)">
-      <animate attributeName="stroke-dashoffset"
-               from="0"
-               to="-128"
-               dur="3s"
-               begin="1s"
-               repeatCount="indefinite"/>
-    </path>
-
   </g>
 
-  <!-- Node Template Style -->
+  <!-- Node Style -->
   <style>
-    .node {
-      fill: url(#glass);
+    .node3d {
+      fill: url(#glass3D);
       stroke: #1F2937;
       stroke-width: 1.5;
-      rx: 14;
+      rx: 16;
     }
     .node-title {
-      fill: #FFFFFF;
+      fill: white;
       font-family: 'Segoe UI';
       font-size: 16px;
       font-weight: 600;
@@ -126,55 +118,69 @@
     }
   </style>
 
-  <!-- Nodes -->
-
-  <!-- Input -->
-  <g>
-    <rect x="100" y="210" width="100" height="100" class="node"/>
-    <text x="150" y="250" class="node-title">Input</text>
-    <text x="150" y="270" class="node-sub">RTSP / Camera</text>
+  <!-- Input Layer -->
+  <g transform="translate(250,220)">
+    <rect width="180" height="120" class="node3d"/>
+    <rect width="180" height="120" class="node3d"
+          transform="translate(-10,-10)"
+          opacity="0.3"/>
+    <text x="90" y="55" class="node-title">Input Layer</text>
+    <text x="90" y="75" class="node-sub">RTSP / Camera</text>
   </g>
 
-  <!-- AI Engine -->
-  <g>
-    <rect x="350" y="200" width="150" height="120" class="node active"/>
-    <text x="425" y="240" class="node-title">AI Engine</text>
-    <text x="425" y="260" class="node-sub">YOLOv8 Inference</text>
-    <text x="425" y="280" class="node-sub">Multi-Object Tracking</text>
+  <!-- AI Engine Layer -->
+  <g transform="translate(550,200)">
+    <rect width="220" height="140" class="node3d active"/>
+    <rect width="220" height="140" class="node3d"
+          transform="translate(-12,-12)"
+          opacity="0.3"/>
+    <text x="110" y="65" class="node-title">AI Engine</text>
+    <text x="110" y="85" class="node-sub">YOLOv8 Inference</text>
+    <text x="110" y="105" class="node-sub">Multi-Object Tracking</text>
   </g>
 
   <!-- Analytics Core -->
-  <g>
-    <rect x="650" y="200" width="150" height="120" class="node"/>
-    <text x="725" y="240" class="node-title">Analytics Core</text>
-    <text x="725" y="260" class="node-sub">Vector Modeling</text>
-    <text x="725" y="280" class="node-sub">Entropy + Density</text>
+  <g transform="translate(900,220)">
+    <rect width="200" height="120" class="node3d"/>
+    <rect width="200" height="120" class="node3d"
+          transform="translate(-10,-10)"
+          opacity="0.3"/>
+    <text x="100" y="55" class="node-title">Analytics Core</text>
+    <text x="100" y="75" class="node-sub">Vector Modeling</text>
+    <text x="100" y="95" class="node-sub">Entropy + Density</text>
   </g>
 
   <!-- Threat Engine -->
-  <g>
-    <rect x="950" y="200" width="150" height="120" class="node"/>
-    <text x="1025" y="240" class="node-title">Threat Engine</text>
-    <text x="1025" y="260" class="node-sub">Panic Index Logic</text>
-    <text x="1025" y="280" class="node-sub">Auto DVR Trigger</text>
+  <g transform="translate(1150,260)">
+    <rect width="200" height="120" class="node3d"/>
+    <rect width="200" height="120" class="node3d"
+          transform="translate(-10,-10)"
+          opacity="0.3"/>
+    <text x="100" y="55" class="node-title">Threat Engine</text>
+    <text x="100" y="75" class="node-sub">Panic Index</text>
+    <text x="100" y="95" class="node-sub">Auto DVR Trigger</text>
   </g>
 
-  <!-- Bottom Dashboard -->
-  <g>
-    <rect x="425" y="380" width="350" height="80" class="node"/>
-    <text x="600" y="420" class="node-title">Command Dashboard</text>
-    <text x="600" y="440" class="node-sub">Real-Time Threat Visualization</text>
+  <!-- Dashboard Floating -->
+  <g transform="translate(600,420)">
+    <rect width="300" height="90" class="node3d active"/>
+    <rect width="300" height="90" class="node3d"
+          transform="translate(-8,-8)"
+          opacity="0.3"/>
+    <text x="150" y="50" class="node-title">Command Dashboard</text>
+    <text x="150" y="70" class="node-sub">Real-Time Threat Visualization</text>
   </g>
 
-  <!-- Vertical Link to Dashboard -->
-  <path d="M1025 320 V380"
-        stroke="url(#neonStroke)"
-        stroke-width="2"
-        stroke-dasharray="6 80"
+  <!-- Vertical Beam -->
+  <path d="M1050 340 C1050 380, 750 390, 750 420"
+        stroke="url(#neonLine)"
+        stroke-width="3"
+        fill="none"
+        stroke-dasharray="8 100"
         filter="url(#glow)">
     <animate attributeName="stroke-dashoffset"
              from="0"
-             to="-86"
+             to="-108"
              dur="2.5s"
              repeatCount="indefinite"/>
   </path>
