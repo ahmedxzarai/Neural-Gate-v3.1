@@ -103,109 +103,24 @@ This enables detection of emergent instability rather than isolated anomalies.
 
 ---
 
+<div align="center">
+
 # 🚨 Deterministic Threat Escalation
+![System Architecture](assets/architecture.svg)
 ### 🛡️ Threat Management Protocol
 The system transitions between operational states based on the calculated **Panic Index ($P$)**:
-<p align="center">
 
 ```mermaid
-flowchart LR
-%% ==========================================================
-%% NEURAL GATE v3.1 | MULTI-LAYER BEHAVIORAL ARCHITECTURE
-%% ==========================================================
+graph LR
+    S((STABLE)) -->|P > 0.4| H[[HIGH]]
+    H -->|P > 0.😎 C{{CRITICAL}}
+    C -.->|Reset| S
+    H --|Cool| S
 
-    %% ================= INPUT LAYER =================
-    subgraph INPUT["Sensor & Perception Layer"]
-    direction TB
-    V[Video Stream]
-    D[YOLOv8 Detection]
-    T[Multi-Object Tracking]
-    V --> D --> T
-    end
-
-    %% ================= METRIC LAYER =================
-    subgraph METRICS["Behavioral Metric Engine"]
-    direction TB
-    VEC[Vector Field Modeling]
-    ACC["Acceleration (dv/dt)"]
-    DEN["Density p(x,y)"]
-    ENT[Spatial Entropy S]
-    VEC --> ACC
-    VEC --> DEN
-    DEN --> ENT
-    end
-
-    %% ================= PANIC INDEX =================
-    subgraph MODEL["Instability Modeling Core"]
-    direction TB
-    PI["Panic Index (P)"]
-    CONF[Confidence Score]
-    TEMP[Temporal Smoothing]
-    PI --> TEMP --> CONF
-    end
-
-    %% ================= STATE MACHINE =================
-    subgraph CONTROL["Deterministic Threat Controller"]
-    direction TB
-    S((STABLE))
-    H([HIGH ALERT])
-    C{{CRITICAL}}
-
-    S -->|P > 0.40| H
-    H -->|P > 0.80| C
-    H -->|Cooldown| S
-    C -.->|System Reset| S
-    end
-
-    %% ================= RESPONSE LAYER =================
-    subgraph RESPONSE["Autonomous Response System"]
-    direction TB
-    ALERT[Active Alerts]
-    LOG[Incident Logging]
-    DVR[(DVR Engine)]
-    RECORD[[Recording Active]]
-    ALERT --> LOG --> DVR --> RECORD
-    end
-
-    %% ================= OBSERVABILITY =================
-    subgraph OBS["System Observability"]
-    direction TB
-    DASH[Command Dashboard]
-    GRAPH[Live Velocity Graph]
-    STATE[Real-Time Status]
-    GRAPH --> DASH
-    STATE --> DASH
-    end
-
-    %% ================= CROSS-LAYER CONNECTIONS =================
-    T --> VEC
-    ACC --> PI
-    ENT --> PI
-    CONF --> S
-    CONF --> H
-    CONF --> C
-
-    S & H & C --> ALERT
-    S & H & C --> STATE
-    RECORD --> DASH
-
-    %% ================= STYLING =================
-    style INPUT fill:#0B1220,stroke:#1F2937,color:#9CA3AF
-    style METRICS fill:#0E1625,stroke:#1F2937,color:#9CA3AF
-    style MODEL fill:#101826,stroke:#1F2937,color:#9CA3AF
-    style CONTROL fill:#0B1220,stroke:#1F2937,color:#9CA3AF
-    style RESPONSE fill:#101826,stroke:#1F2937,color:#9CA3AF
-    style OBS fill:#0E1625,stroke:#1F2937,color:#9CA3AF
-
-    style S fill:#0D1117,stroke:#00F0FF,stroke-width:3px,color:#00F0FF
-    style H fill:#0D1117,stroke:#F59E0B,stroke-width:3px,color:#F59E0B
-    style C fill:#0D1117,stroke:#EF4444,stroke-width:4px,color:#EF4444
-
-    style PI fill:#111827,stroke:#7C3AED,stroke-width:2px,color:#C084FC
-    style RECORD fill:#111827,stroke:#EF4444,stroke-width:3px,color:#EF4444
-    style DASH fill:#111827,stroke:#00F0FF,color:#00F0FF
+    style S fill:#0D1117,stroke:#00f0ff,stroke-width:3px
+    style H fill:#0D1117,stroke:#f59e0b,stroke-width:3px
+    style C fill:#0D1117,stroke:#ef4444,stroke-width:3px
 ```
-</p>
 
 ### 📋 State-Action Logic Matrix
 | Current State | Threshold ($P$) | System Action | Dash Indicator | DVR Status |
@@ -213,6 +128,8 @@ flowchart LR
 | *STABLE* | $P < 0.4$ | Standard Monitoring | 🟢 Solid Green | IDLE |
 | *HIGH* | $0.4 \leq P < 0.8$ | Analytics Warning | 🟠 Pulsing Orange | *ARMED* |
 | *CRITICAL* | $P \geq 0.8$ | Autonomous Response | 🔴 Flashing Red | *RECORDING* |
+
+</div>
 
 ##### 🎥 Autonomous Incident Capture
 When:
