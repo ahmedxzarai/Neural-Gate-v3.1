@@ -27,7 +27,6 @@
       </feMerge>
     </filter>
 
-    <!-- Core Pulse Animation -->
     <style>
       .title { fill:#FFFFFF; font-size:44px; font-family:Segoe UI, sans-serif; font-weight:600; letter-spacing:2px; }
       .subtitle { fill:#7F97B5; font-size:18px; font-family:Segoe UI, sans-serif; }
@@ -38,9 +37,9 @@
       .corePulse { animation: pulse 4s ease-in-out infinite; }
       .satellite { fill:#00E5FF; filter:url(#glow); }
       .thermal-bar { fill:#FF3E3E; filter:url(#glow); }
+      .graph-line { stroke:#00E5FF; stroke-width:2; fill:none; filter:url(#glow); stroke-linecap:round; }
       @keyframes pulse { 0% { transform:scale(1); opacity:0.9; } 50% { transform:scale(1.05); opacity:1; } 100% { transform:scale(1); opacity:0.9; } }
       @keyframes flow { to { stroke-dashoffset:-48; } }
-      .graph-line { stroke:#00E5FF; stroke-width:2; fill:none; filter:url(#glow); stroke-linecap:round; }
     </style>
   </defs>
 
@@ -119,9 +118,8 @@
   <!-- COMMAND DASHBOARD -->
   <g transform="translate(460,650)">
     <rect width="680" height="170" rx="16" fill="#0C1B31" stroke="#1B3E6B" stroke-width="1.5"/>
-    <text x="340" y="30" text-anchor="middle" class="panel-title">COMMAND DASHBOARD</text>
-
-    <!-- Animated Graphs -->
+    
+    <!-- Graph behind text -->
     <polyline class="graph-line" points="30,120 120,100 210,130 300,90 390,110 480,80 570,100">
       <animate attributeName="points" dur="4s" repeatCount="indefinite"
         values="
@@ -130,6 +128,8 @@
         30,120 120,100 210,130 300,90 390,110 480,80 570,100"/>
     </polyline>
 
+    <!-- Text fully inside the panel -->
+    <text x="340" y="30" text-anchor="middle" class="panel-title">COMMAND DASHBOARD</text>
     <text x="30" y="65" class="panel-text">• AI Core Load: 78%</text>
     <text x="30" y="90" class="panel-text">• Threat Escalation: 62%</text>
     <text x="30" y="115" class="panel-text">• Input Stream Health: Optimal</text>
