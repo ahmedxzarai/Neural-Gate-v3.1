@@ -49,24 +49,11 @@ It analyzes *emergent behavior*.
 
 ---
 
-# 🏗 System Architecture
-```text
-Video Stream
-↓
-YOLOv8 Object Detection
-↓
-Multi-Object Tracking
-↓
-Vector & Acceleration Modeling
-↓
-Behavioral Metrics Engine
-↓
-Threat State Machine
-↓
-Autonomous DVR Trigger
-↓
-Real-Time Dashboard (Flask + SocketIO)
-```
+## 🏗 System Architecture
+
+<p align="center">
+  <img src="assets/architecture.svg" width="100%">
+</p>
 
 ---
 
