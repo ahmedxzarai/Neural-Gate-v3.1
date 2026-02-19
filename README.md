@@ -140,6 +140,8 @@ graph LR
 | *HIGH* | $0.4 \leq P < 0.8$ | Analytics Warning | 🟠 Pulsing Orange | *ARMED* |
 | *CRITICAL* | $P \geq 0.8$ | Autonomous Response | 🔴 Flashing Red | *RECORDING* |
 
+</details>
+
 ##### 🎥 Autonomous Incident Capture
 
 When:
@@ -155,7 +157,6 @@ The system automatically:
 
 No operator intervention required.
 
-</details>
 ---
 
 # 🧩 Smart Input Engine
