@@ -1,108 +1,166 @@
 <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
 
-<!-- ================= BACKGROUND ================= -->
-<rect width="1600" height="900" fill="#030712"/>
+<!-- BACKGROUND -->
+<rect width="1600" height="900" fill="#01020A"/>
 <defs>
   <radialGradient id="bgGlow" cx="50%" cy="50%" r="70%">
     <stop offset="0%" stop-color="#0B1220"/>
-    <stop offset="100%" stop-color="#030712"/>
+    <stop offset="100%" stop-color="#01020A"/>
   </radialGradient>
+
   <filter id="glow">
-    <feGaussianBlur stdDeviation="6" result="blur"/>
+    <feGaussianBlur stdDeviation="6"/>
     <feMerge>
-      <feMergeNode in="blur"/>
+      <feMergeNode/>
       <feMergeNode in="SourceGraphic"/>
     </feMerge>
   </filter>
+
   <linearGradient id="neon" x1="0%" y1="0%" x2="100%" y2="0%">
     <stop offset="0%" stop-color="#00F0FF"/>
     <stop offset="100%" stop-color="#7C3AED"/>
   </linearGradient>
+
   <linearGradient id="panelGlass" x1="0%" y1="0%" x2="100%" y2="100%">
     <stop offset="0%" stop-color="white" stop-opacity="0.07"/>
     <stop offset="100%" stop-color="white" stop-opacity="0.02"/>
   </linearGradient>
+
+  <style>
+    .panel-text { font-family:'Segoe UI'; fill:#FFFFFF; font-size:13px; }
+    .sub-text { fill:#9CA3AF; font-size:12px; }
+    .satellite { fill:#00F0FF; filter:url(#glow); }
+    .panel { fill:url(#panelGlass); stroke:#1F2937; stroke-width:1.5; rx:20; }
+    .thermal { fill:#FF3E3E; filter:url(#glow); }
+    .dynamic-bar { fill:#00F0FF; filter:url(#glow); }
+    .neural-pulse { fill:none; stroke:#00F0FF; stroke-width:3; stroke-linecap:round; filter:url(#glow); opacity:0.8; stroke-dasharray:10 10; }
+    .data-node { fill:#7C3AED; filter:url(#glow); }
+    .highlight { fill:#00F0FF; font-weight:600; }
+  </style>
 </defs>
+
 <rect width="1600" height="900" fill="url(#bgGlow)"/>
 
-<!-- ================= TITLE ================= -->
-<text x="800" y="80" text-anchor="middle" fill="#00F0FF" font-size="34" font-family="Segoe UI" letter-spacing="6" filter="url(#glow)">NEURAL GATE CONTROL ROOM</text>
-<text x="800" y="115" text-anchor="middle" fill="#9CA3AF" font-size="14" font-family="Segoe UI" letter-spacing="3">Real-Time Behavioral Intelligence Environment</text>
+<!-- TITLE -->
+<text x="800" y="60" text-anchor="middle" fill="#00F0FF" font-size="34" font-family="Segoe UI" letter-spacing="6" filter="url(#glow)">NEURAL GATE LIVE CONTROL ROOM</text>
+<text x="800" y="90" text-anchor="middle" fill="#9CA3AF" font-size="14" font-family="Segoe UI" letter-spacing="3">Hyper-Real-Time Neural Network Dashboard</text>
 
-<!-- ================= AI CORE ================= -->
-<circle cx="800" cy="450" r="90" stroke="url(#neon)" stroke-width="4" fill="none" filter="url(#glow)">
-  <animate attributeName="r" values="85;95;85" dur="4s" repeatCount="indefinite"/>
-</circle>
-<circle cx="800" cy="450" r="40" fill="#00F0FF" opacity="0.8" filter="url(#glow)">
-  <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
-</circle>
-<text x="800" y="455" text-anchor="middle" fill="#000" font-size="14" font-family="Segoe UI" font-weight="600">AI CORE</text>
-<circle cx="800" cy="450" r="150" stroke="#00F0FF" stroke-width="1.5" fill="none" stroke-dasharray="12 20" opacity="0.5">
-  <animateTransform attributeName="transform" type="rotate" from="0 800 450" to="360 800 450" dur="20s" repeatCount="indefinite"/>
-</circle>
-<circle cx="800" cy="450" r="200" stroke="#7C3AED" stroke-width="1.2" fill="none" stroke-dasharray="6 14" opacity="0.4">
-  <animateTransform attributeName="transform" type="rotate" from="360 800 450" to="0 800 450" dur="30s" repeatCount="indefinite"/>
-</circle>
-
-<!-- ================= LEFT PANEL - INPUT STREAM ================= -->
-<g>
-  <rect x="180" y="240" width="260" height="320" rx="20" fill="url(#panelGlass)" stroke="#1F2937" stroke-width="1.5"/>
-  <rect x="190" y="250" width="240" height="300" rx="20" fill="url(#panelGlass)" stroke="#334155" stroke-width="1"/>
-  <text x="225" y="290" fill="#FFFFFF" font-family="Segoe UI" font-size="16" font-weight="600">INPUT STREAM</text>
-  <text x="225" y="320" fill="#9CA3AF" font-family="Segoe UI" font-size="13">FPS: 30</text>
-  <text x="225" y="340" fill="#9CA3AF" font-family="Segoe UI" font-size="13">Resolution: 1920x1080</text>
-  <text x="225" y="360" fill="#9CA3AF" font-family="Segoe UI" font-size="13">Camera Status: Active</text>
-  <text x="225" y="380" fill="#9CA3AF" font-family="Segoe UI" font-size="13">Tracking Objects: 12</text>
-  <text x="225" y="400" fill="#9CA3AF" font-family="Segoe UI" font-size="13">Dropped Frames: 0</text>
-  <text x="225" y="420" fill="#9CA3AF" font-family="Segoe UI" font-size="13">Latency: 24ms</text>
+<!-- AI CORE -->
+<g id="ai-core">
+  <circle cx="800" cy="450" r="90" stroke="url(#neon)" stroke-width="4" fill="none" filter="url(#glow)">
+    <animate attributeName="r" values="85;105;90;110;85" dur="6s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="800" cy="450" r="40" fill="#00F0FF" opacity="0.8" filter="url(#glow)">
+    <animate attributeName="opacity" values="0.6;1;0.7;1;0.6" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <text x="800" y="455" text-anchor="middle" fill="#000" font-size="14" font-family="Segoe UI" font-weight="600">AI CORE</text>
 </g>
 
-<!-- ================= RIGHT PANEL - THREAT ENGINE ================= -->
-<g>
-  <rect x="1150" y="240" width="260" height="320" rx="20" fill="url(#panelGlass)" stroke="#1F2937" stroke-width="1.5"/>
-  <rect x="1150" y="250" width="240" height="300" rx="20" fill="url(#panelGlass)" stroke="#334155" stroke-width="1"/>
-  <text x="1175" y="290" fill="#FFFFFF" font-family="Segoe UI" font-size="16" font-weight="600">THREAT ENGINE</text>
-  <text x="1175" y="320" fill="#9CA3AF" font-family="Segoe UI" font-size="13">Panic Index: 0.62</text>
-  <text x="1175" y="340" fill="#9CA3AF" font-family="Segoe UI" font-size="13">State: HIGH</text>
-  <text x="1175" y="360" fill="#9CA3AF" font-family="Segoe UI" font-size="13">DVR: ARMED</text>
-  <text x="1175" y="380" fill="#9CA3AF" font-family="Segoe UI" font-size="13">Top Anomaly: Crowd Surge</text>
-  <text x="1175" y="400" fill="#9CA3AF" font-family="Segoe UI" font-size="13">Predicted Escalation: +12%</text>
-  <text x="1175" y="420" fill="#9CA3AF" font-family="Segoe UI" font-size="13">Recent Alerts: 3</text>
-  <text x="1175" y="440" fill="#9CA3AF" font-family="Segoe UI" font-size="13">AI Recommendations: Monitor Closely</text>
+<!-- PANELS -->
+<g transform="translate(180,240)">
+  <rect width="260" height="320" class="panel"/>
+  <text x="10" y="40" class="panel-text" font-weight="600">INPUT STREAM</text>
+  <text x="10" y="70" class="sub-text">Status: Active</text>
+  <text x="10" y="90" class="sub-text">FPS: 30</text>
+  <text x="10" y="110" class="sub-text">Resolution: 1920x1080</text>
+  <text x="10" y="130" class="sub-text">Tracked Objects: 12</text>
+  <text x="10" y="150" class="sub-text">Dropped Frames: 0</text>
+  <text x="10" y="170" class="sub-text highlight">AI Recommendation: Stable Monitoring</text>
 </g>
 
-<!-- ================= SATELLITES / ORBIT NODES ================= -->
-<g>
-  <circle cx="800" cy="450" r="300" fill="none" stroke="#00F0FF" stroke-dasharray="6 18" opacity="0.2">
-    <animateTransform attributeName="transform" type="rotate" from="0 800 450" to="360 800 450" dur="60s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="1100" cy="450" r="12" fill="#F59E0B" filter="url(#glow)">
-    <animateTransform attributeName="transform" type="rotate" from="0 800 450" to="360 800 450" dur="20s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="500" cy="450" r="10" fill="#EF4444" filter="url(#glow)">
-    <animateTransform attributeName="transform" type="rotate" from="360 800 450" to="0 800 450" dur="25s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="800" cy="150" r="8" fill="#00F0FF" filter="url(#glow)">
-    <animateTransform attributeName="transform" type="rotate" from="0 800 450" to="360 800 450" dur="30s" repeatCount="indefinite"/>
-  </circle>
+<g transform="translate(1150,240)">
+  <rect width="260" height="320" class="panel"/>
+  <text x="10" y="40" class="panel-text" font-weight="600">THREAT ENGINE</text>
+  <text x="10" y="70" class="sub-text">Panic Index: 0.62</text>
+  <text x="10" y="90" class="sub-text">State: HIGH</text>
+  <text x="10" y="110" class="sub-text">DVR: ARMED</text>
+  <text x="10" y="130" class="sub-text">Top Anomaly: Crowd Surge</text>
+  <text x="10" y="150" class="sub-text">Predicted Escalation: +12%</text>
+  <text x="10" y="170" class="sub-text">Recent Alerts: 3</text>
+  <text x="10" y="190" class="sub-text highlight">AI Recommendation: Monitor Closely</text>
+  <!-- Thermal Bars -->
+  <g>
+    <rect x="10" y="210" width="10" class="thermal">
+      <animate attributeName="height" values="5;25;10;30;5" dur="1.2s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="25" y="210" width="10" class="thermal">
+      <animate attributeName="height" values="15;30;20;25;15" dur="1.2s" repeatCount="indefinite" begin="0.2s"/>
+    </rect>
+    <rect x="40" y="210" width="10" class="thermal">
+      <animate attributeName="height" values="10;28;12;30;10" dur="1.2s" repeatCount="indefinite" begin="0.4s"/>
+    </rect>
+    <rect x="55" y="210" width="10" class="thermal">
+      <animate attributeName="height" values="20;35;15;30;20" dur="1.2s" repeatCount="indefinite" begin="0.6s"/>
+    </rect>
+    <rect x="70" y="210" width="10" class="thermal">
+      <animate attributeName="height" values="5;20;10;25;5" dur="1.2s" repeatCount="indefinite" begin="0.8s"/>
+    </rect>
+  </g>
 </g>
 
-<!-- ================= BOTTOM COMMAND DASHBOARD ================= -->
-<rect x="440" y="680" width="720" height="140" rx="20" fill="url(#panelGlass)" stroke="#1F2937" stroke-width="1.5"/>
-<rect x="450" y="690" width="700" height="120" rx="20" fill="url(#panelGlass)" stroke="#334155" stroke-width="1"/>
-<text x="800" y="715" text-anchor="middle" fill="#FFFFFF" font-size="18" font-weight="600">COMMAND DASHBOARD</text>
-<polyline fill="none" stroke="#00F0FF" stroke-width="2" filter="url(#glow)"
-  points="500,780 600,760 700,790 800,750 900,770 1000,740 1100,760">
-  <animate attributeName="points" dur="4s" repeatCount="indefinite"
-    values="
-    500,780 600,760 700,790 800,750 900,770 1000,740 1100,760;
-    500,770 600,790 700,760 800,780 900,750 1000,770 1100,750;
-    500,780 600,760 700,790 800,750 900,770 1000,740 1100,760"/>
-</polyline>
+<!-- ANALYTICS PANEL -->
+<g transform="translate(180,600)">
+  <rect width="260" height="200" class="panel"/>
+  <text x="10" y="40" class="panel-text" font-weight="600">ANALYTICS</text>
+  <text x="10" y="70" class="sub-text">Average Velocity: 1.8 m/s</text>
+  <text x="10" y="90" class="sub-text">Density: 0.72</text>
+  <text x="10" y="110" class="sub-text">Coherence: 0.81</text>
+  <text x="10" y="130" class="sub-text">Panic Index Trend: ↑</text>
+  <text x="10" y="150" class="sub-text highlight">AI Suggestion: Prepare Alerts</text>
+</g>
 
-<!-- Pulsing Threat Indicator -->
-<circle cx="1340" cy="330" r="8" fill="#FFA500">
-  <animate attributeName="r" values="6;10;6" dur="1.5s" repeatCount="indefinite"/>
+<!-- SATELLITE FEED PANEL -->
+<g transform="translate(1150,600)">
+  <rect width="260" height="200" class="panel"/>
+  <text x="10" y="40" class="panel-text" font-weight="600">SATELLITE FEED</text>
+  <text x="10" y="70" class="sub-text">Status: Online</text>
+  <text x="10" y="90" class="sub-text">Objects Detected: 48</text>
+  <text x="10" y="110" class="sub-text">Thermal Hotspots: 3</text>
+  <text x="10" y="130" class="sub-text">Feed Latency: 120ms</text>
+  <text x="10" y="150" class="sub-text highlight">AI Recommendation: Monitor High-Risk Areas</text>
+</g>
+
+<!-- COMMAND DASHBOARD -->
+<g transform="translate(440,680)">
+  <rect width="720" height="140" class="panel"/>
+  <text x="360" y="30" text-anchor="middle" fill="#FFFFFF" font-size="18" font-weight="600">COMMAND DASHBOARD</text>
+</g>
+
+<!-- MOVING NEURAL PULSES -->
+<path id="pulse1" d="M440,400 C600,300 800,450" class="neural-pulse"/>
+<circle r="6" fill="#00F0FF">
+  <animateMotion dur="2s" repeatCount="indefinite" rotate="auto">
+    <mpath xlink:href="#pulse1"/>
+  </animateMotion>
+</circle>
+<path id="pulse2" d="M1150,400 C950,350 800,450" class="neural-pulse"/>
+<circle r="6" fill="#00F0FF">
+  <animateMotion dur="2.5s" repeatCount="indefinite" rotate="auto">
+    <mpath xlink:href="#pulse2"/>
+  </animateMotion>
+</circle>
+
+<!-- ORBITING SATELLITES -->
+<circle cx="800" cy="450" r="10" class="satellite">
+  <animateMotion dur="20s" repeatCount="indefinite" rotate="auto">
+    <mpath>
+      <circle cx="800" cy="450" r="180" fill="none"/>
+    </mpath>
+  </animateMotion>
+</circle>
+<circle cx="800" cy="450" r="8" class="satellite">
+  <animateMotion dur="28s" repeatCount="indefinite" rotate="auto" path="M800,450 m-200,0 a200,200 0 1,1 400,0 a200,200 0 1,1 -400,0"/>
+</circle>
+
+<!-- DYNAMIC DATA NODES -->
+<circle cx="700" cy="400" r="8" class="data-node">
+  <animate attributeName="r" values="5;10;7;10;5" dur="3s" repeatCount="indefinite"/>
+</circle>
+<circle cx="900" cy="500" r="6" class="data-node">
+  <animate attributeName="r" values="3;8;5;8;3" dur="3.2s" repeatCount="indefinite"/>
+</circle>
+<circle cx="850" cy="380" r="5" class="data-node">
+  <animate attributeName="r" values="2;7;4;7;2" dur="2.8s" repeatCount="indefinite"/>
 </circle>
 
 </svg>
