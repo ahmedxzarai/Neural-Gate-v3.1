@@ -106,6 +106,7 @@ This enables detection of emergent instability rather than isolated anomalies.
 # 🚨 Deterministic Threat Escalation
 ### 🛡️ Threat Management Protocol
 The system transitions between operational states based on the calculated **Panic Index ($P$)**:
+<p align="center">
 
 ```mermaid
 graph LR
@@ -129,6 +130,8 @@ graph LR
     linkStyle 1 stroke:#FF3E3E,stroke-width:3px
     linkStyle 0 stroke:#FFA500,stroke-width:2px
 ```
+</p>
+
 ### 📋 State-Action Logic Matrix
 | Current State | Threshold ($P$) | System Action | Dash Indicator | DVR Status |
 | :--- | :--- | :--- | :--- | :--- |
