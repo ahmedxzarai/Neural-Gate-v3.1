@@ -1,30 +1,148 @@
-<svg width="900" height="300" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
-  <rect width="900" height="300" fill="#0D1117" rx="15"/>
-  
-  <defs>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-  </defs>
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
 
-  <g stroke-dasharray="8 8" stroke-width="2">
-    <line x1="150" y1="150" x2="350" y2="150" stroke="#00f0ff" opacity="0.6"/>
-    <line x1="350" y1="150" x2="550" y2="150" stroke="#7c3aed" opacity="0.6"/>
-    <line x1="550" y1="150" x2="750" y2="150" stroke="#ef4444" opacity="0.6"/>
-  </g>
+<!-- ================= BACKGROUND ================= -->
+<rect width="1600" height="900" fill="#030712"/>
+<defs>
+  <radialGradient id="bgGlow" cx="50%" cy="50%" r="70%">
+    <stop offset="0%" stop-color="#0B1220"/>
+    <stop offset="100%" stop-color="#030712"/>
+  </radialGradient>
+</defs>
+<rect width="1600" height="900" fill="url(#bgGlow)"/>
 
-  <circle cx="150" cy="150" r="45" fill="#0d1117" stroke="#00f0ff" stroke-width="3" filter="url(#glow)"/>
-  <text x="150" y="155" text-anchor="middle" fill="#00f0ff" font-family="Arial" font-weight="bold" font-size="12">SENSOR</text>
+<!-- Animated Grid -->
+<defs>
+  <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+    <path d="M60 0 L0 0 0 60" fill="none" stroke="#0F172A" stroke-width="1"/>
+  </pattern>
+</defs>
+<rect width="1600" height="900" fill="url(#grid)" opacity="0.3">
+  <animate attributeName="opacity" values="0.2;0.35;0.2" dur="6s" repeatCount="indefinite"/>
+</rect>
 
-  <circle cx="350" cy="150" r="45" fill="#0d1117" stroke="#7c3aed" stroke-width="3" filter="url(#glow)"/>
-  <text x="350" y="155" text-anchor="middle" fill="#c084fc" font-family="Arial" font-weight="bold" font-size="12">MODEL</text>
+<!-- Glow Filters & Gradients -->
+<defs>
+  <filter id="glow">
+    <feGaussianBlur stdDeviation="6" result="blur"/>
+    <feMerge>
+      <feMergeNode in="blur"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
 
-  <circle cx="550" cy="150" r="45" fill="#0d1117" stroke="#00f0ff" stroke-width="3" filter="url(#glow)"/>
-  <text x="550" y="155" text-anchor="middle" fill="#00f0ff" font-family="Arial" font-weight="bold" font-size="12">CONTROL</text>
+  <linearGradient id="neon" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#00F0FF"/>
+    <stop offset="100%" stop-color="#7C3AED"/>
+  </linearGradient>
 
-  <circle cx="750" cy="150" r="45" fill="#0d1117" stroke="#ef4444" stroke-width="3" filter="url(#glow)"/>
-  <text x="750" y="155" text-anchor="middle" fill="#ef4444" font-family="Arial" font-weight="bold" font-size="12">RESPONSE</text>
+  <linearGradient id="panelGlass" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="white" stop-opacity="0.07"/>
+    <stop offset="100%" stop-color="white" stop-opacity="0.02"/>
+  </linearGradient>
+</defs>
+
+<!-- ================= TITLE ================= -->
+<text x="800" y="80"
+      text-anchor="middle"
+      fill="#00F0FF"
+      font-size="34"
+      font-family="Segoe UI"
+      letter-spacing="6"
+      filter="url(#glow)">
+      NEURAL GATE CONTROL ROOM
+</text>
+<text x="800" y="115"
+      text-anchor="middle"
+      fill="#9CA3AF"
+      font-size="14"
+      font-family="Segoe UI"
+      letter-spacing="3">
+      Real-Time Behavioral Intelligence Environment
+</text>
+
+<!-- ================= AI CORE ================= -->
+<circle cx="800" cy="450" r="90" stroke="url(#neon)" stroke-width="4" fill="none" filter="url(#glow)">
+  <animate attributeName="r" values="85;95;85" dur="4s" repeatCount="indefinite"/>
+</circle>
+<circle cx="800" cy="450" r="40" fill="#00F0FF" opacity="0.8" filter="url(#glow)">
+  <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+</circle>
+<text x="800" y="455" text-anchor="middle" fill="#000" font-size="14" font-family="Segoe UI" font-weight="600">
+  AI CORE
+</text>
+
+<!-- Rotating Rings -->
+<circle cx="800" cy="450" r="150" stroke="#00F0FF" stroke-width="1.5" fill="none" stroke-dasharray="12 20" opacity="0.5">
+  <animateTransform attributeName="transform" type="rotate" from="0 800 450" to="360 800 450" dur="20s" repeatCount="indefinite"/>
+</circle>
+<circle cx="800" cy="450" r="200" stroke="#7C3AED" stroke-width="1.2" fill="none" stroke-dasharray="6 14" opacity="0.4">
+  <animateTransform attributeName="transform" type="rotate" from="360 800 450" to="0 800 450" dur="30s" repeatCount="indefinite"/>
+</circle>
+
+<!-- ================= DATA BEAMS ================= -->
+<g stroke="url(#neon)" stroke-width="3" fill="none" filter="url(#glow)">
+  <path d="M400 300 C600 350, 700 400, 800 450" stroke-dasharray="10 120">
+    <animate attributeName="stroke-dashoffset" from="0" to="-130" dur="3s" repeatCount="indefinite"/>
+  </path>
+  <path d="M1200 300 C1000 350, 900 400, 800 450" stroke-dasharray="10 120">
+    <animate attributeName="stroke-dashoffset" from="0" to="-130" dur="3s" begin="0.7s" repeatCount="indefinite"/>
+  </path>
+</g>
+
+<!-- ================= MULTI-LEVEL GLASS PANELS ================= -->
+<g>
+  <!-- Layer 1 -->
+  <rect x="180" y="240" width="260" height="320" rx="20" fill="url(#panelGlass)" stroke="#1F2937" stroke-width="1.5"/>
+  <rect x="1140" y="240" width="260" height="320" rx="20" fill="url(#panelGlass)" stroke="#1F2937" stroke-width="1.5"/>
+  <rect x="440" y="680" width="720" height="140" rx="20" fill="url(#panelGlass)" stroke="#1F2937" stroke-width="1.5"/>
+  <!-- Layer 2 (offset for depth) -->
+  <rect x="190" y="250" width="240" height="300" rx="20" fill="url(#panelGlass)" stroke="#334155" stroke-width="1"/>
+  <rect x="1150" y="250" width="240" height="300" rx="20" fill="url(#panelGlass)" stroke="#334155" stroke-width="1"/>
+  <rect x="450" y="690" width="700" height="120" rx="20" fill="url(#panelGlass)" stroke="#334155" stroke-width="1"/>
+</g>
+
+<!-- Panel Text -->
+<text x="225" y="290" fill="#FFFFFF" font-family="Segoe UI" font-size="16" font-weight="600">INPUT STREAM</text>
+<text x="225" y="320" fill="#9CA3AF" font-family="Segoe UI" font-size="13">RTSP / Camera Feed</text>
+<text x="1175" y="290" fill="#FFFFFF" font-family="Segoe UI" font-size="16" font-weight="600">THREAT ENGINE</text>
+<text x="1175" y="320" fill="#9CA3AF" font-family="Segoe UI" font-size="13">Panic Index: 0.62</text>
+
+<!-- ================= SATELLITE DATA NODES ================= -->
+<g>
+  <!-- Orbit Circle -->
+  <circle cx="800" cy="450" r="300" fill="none" stroke="#00F0FF" stroke-dasharray="6 18" opacity="0.2">
+    <animateTransform attributeName="transform" type="rotate" from="0 800 450" to="360 800 450" dur="60s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Orbiting Satellites -->
+  <circle cx="1100" cy="450" r="12" fill="#F59E0B" filter="url(#glow)">
+    <animateTransform attributeName="transform" type="rotate" from="0 800 450" to="360 800 450" dur="20s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="500" cy="450" r="10" fill="#EF4444" filter="url(#glow)">
+    <animateTransform attributeName="transform" type="rotate" from="360 800 450" to="0 800 450" dur="25s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="800" cy="150" r="8" fill="#00F0FF" filter="url(#glow)">
+    <animateTransform attributeName="transform" type="rotate" from="0 800 450" to="360 800 450" dur="30s" repeatCount="indefinite"/>
+  </circle>
+</g>
+
+<!-- Pulsing Threat Indicator -->
+<circle cx="1340" cy="330" r="8" fill="#FFA500">
+  <animate attributeName="r" values="6;10;6" dur="1.5s" repeatCount="indefinite"/>
+</circle>
+
+<!-- Animated Bottom Graph -->
+<polyline fill="none"
+          stroke="#00F0FF"
+          stroke-width="2"
+          filter="url(#glow)"
+          points="500,780 600,760 700,790 800,750 900,770 1000,740 1100,760">
+  <animate attributeName="points"
+           dur="4s"
+           repeatCount="indefinite"
+           values="
+           500,780 600,760 700,790 800,750 900,770 1000,740 1100,760;
+           500,770 600,790 700,760 800,780 900,750 1000,770 1100,750;
+           500,780 600,760 700,790 800,750 900,770 1000,740 1100,760"/>
+</polyline>
+
 </svg>
