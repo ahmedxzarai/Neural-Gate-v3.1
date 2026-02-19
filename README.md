@@ -110,42 +110,84 @@ The system transitions between operational states based on the calculated **Pani
 
 ```mermaid
 flowchart LR
-    %% ===============================
-    %% NEURAL GATE — THREAT STATE MACHINE
-    %% ===============================
+%% ==========================================================
+%% NEURAL GATE v3.1
+%% HIERARCHICAL BEHAVIORAL THREAT STATE MACHINE (HSM)
+%% ==========================================================
 
-    %% Core States
-    S((STABLE))
-    H([HIGH ALERT])
-    C{{CRITICAL}}
+%% ================= ROOT SYSTEM =================
+subgraph NG["Neural Gate Behavioral Intelligence System"]
 
-    %% Operational Subgraph
-    subgraph NG["Neural Gate Deterministic Escalation Logic"]
-        direction LR
-        S -->|P > 0.40| H
-        H -->|P > 0.80| C
-        H -->|Cooldown\nP < 0.40| S
-        C -.->|System Reset| S
-    end
+direction LR
 
-    %% ===============================
-    %% STATE STYLING (Premium Dark Mode)
-    %% ===============================
+%% ================= PRIMARY STATES =================
+S((STABLE))
+H([HIGH ALERT])
+C{{CRITICAL}}
 
-    style NG fill:#0B1220,stroke:#1F2937,stroke-width:1.5px,color:#9CA3AF
+%% ================= ESCALATION LOGIC =================
+S -->|P > 0.40| H
+H -->|P > 0.80| C
+H -->|Cooldown\nP < 0.40| S
+C -.->|System Reset| S
 
-    style S fill:#0D1117,stroke:#00F0FF,stroke-width:3px,color:#00F0FF
-    style H fill:#0D1117,stroke:#F59E0B,stroke-width:3px,color:#F59E0B
-    style C fill:#0D1117,stroke:#EF4444,stroke-width:4px,color:#EF4444
+%% ================= ENTRY / EXIT ACTIONS =================
+S --> ES[Entry: Initialize Monitoring]
+H --> EH[Entry: Enable Warning Protocol]
+C --> EC[Entry: Trigger Autonomous Response]
 
-    %% ===============================
-    %% LINK STYLING
-    %% ===============================
+ES --> MON[Continuous Vector Tracking]
+EH --> WARN[Activate Visual Alerts]
+EC --> RESP[Lock State + Log Incident]
 
-    linkStyle 0 stroke:#00F0FF,stroke-width:2px
-    linkStyle 1 stroke:#F59E0B,stroke-width:3px
-    linkStyle 2 stroke:#8B949E,stroke-width:2px
-    linkStyle 3 stroke:#EF4444,stroke-width:2px,stroke-dasharray: 6 6
+%% ================= DVR SUBSYSTEM =================
+subgraph DVR["Autonomous DVR Subsystem"]
+
+direction TB
+
+D1[(IDLE)]
+D2[(ARMED)]
+D3[(RECORDING)]
+
+end
+
+%% DVR Mapping
+S --> D1
+H --> D2
+C --> D3
+
+end
+
+%% ================= VISUAL STYLING =================
+
+style NG fill:#0B1220,stroke:#1F2937,stroke-width:1.5px,color:#9CA3AF
+style DVR fill:#0E1625,stroke:#1F2937,stroke-width:1.2px,color:#9CA3AF
+
+%% Primary States
+style S fill:#0D1117,stroke:#00F0FF,stroke-width:3px,color:#00F0FF
+style H fill:#0D1117,stroke:#F59E0B,stroke-width:3px,color:#F59E0B
+style C fill:#0D1117,stroke:#EF4444,stroke-width:4px,color:#EF4444
+
+%% Entry Actions
+style ES fill:#111827,stroke:#334155,color:#9CA3AF
+style EH fill:#111827,stroke:#F59E0B,color:#F59E0B
+style EC fill:#111827,stroke:#EF4444,color:#EF4444
+
+%% Operational Blocks
+style MON fill:#0B1220,stroke:#334155,color:#9CA3AF
+style WARN fill:#0B1220,stroke:#F59E0B,color:#F59E0B
+style RESP fill:#0B1220,stroke:#EF4444,color:#EF4444
+
+%% DVR States
+style D1 fill:#0B1220,stroke:#334155,color:#9CA3AF
+style D2 fill:#0B1220,stroke:#F59E0B,color:#F59E0B
+style D3 fill:#0B1220,stroke:#EF4444,stroke-width:3px,color:#EF4444
+
+%% Link Styling
+linkStyle 0 stroke:#00F0FF,stroke-width:2px
+linkStyle 1 stroke:#F59E0B,stroke-width:3px
+linkStyle 2 stroke:#8B949E,stroke-width:2px
+linkStyle 3 stroke:#EF4444,stroke-width:2px,stroke-dasharray: 6 6
 ```
 </p>
 
