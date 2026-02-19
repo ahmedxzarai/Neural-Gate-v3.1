@@ -106,7 +106,6 @@ This enables detection of emergent instability rather than isolated anomalies.
 # 🚨 Deterministic Threat Escalation
 ### 🛡️ Threat Management Protocol
 The system transitions between operational states based on the calculated **Panic Index ($P$)**:
-
 <p align="center">
 
 ```mermaid
