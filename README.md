@@ -106,29 +106,43 @@ This enables detection of emergent instability rather than isolated anomalies.
 # 🚨 Deterministic Threat Escalation
 ### 🛡️ Threat Management Protocol
 The system transitions between operational states based on the calculated **Panic Index ($P$)**:
+
 <p align="center">
 
 ```mermaid
 graph LR
-    %% Node Definitions
-    S((STABLE))
-    H[[HIGH]]
-    C{{CRITICAL}}
+    %% Direction and Font Setup
+    accTitle: Neural Gate Threat Escalation
+    accDescr: High-end state machine for panic index transitions
 
-    %% Transitions
+    subgraph Monitoring_Zone [ACTIVE SURVEILLANCE]
+        S((<b>STABLE</b>))
+        H[[<b>HIGH</b>]]
+    end
+
+    subgraph Incident_Zone [EMERGENCY RESPONSE]
+        C{{<b>CRITICAL</b>}}
+    end
+
+    %% Optimized Transitions
     S -- "P > 0.4" --> H
     H -- "P > 0.8" --> C
-    C -- "Manual Override" --> S
-    H -- "Cool Down" --> S
+    C -. "System Reset" .-> S
+    H -- "Cooldown" --> S
 
-    %% Styling
-    style S fill:#161B22,stroke:#00F0FF,stroke-width:2px,color:#E2E8F0
-    style H fill:#161B22,stroke:#FFA500,stroke-width:3px,color:#E2E8F0
-    style C fill:#161B22,stroke:#FF3E3E,stroke-width:4px,color:#FF3E3E
-    
-    %% Connection Styling
-    linkStyle 1 stroke:#FF3E3E,stroke-width:3px
-    linkStyle 0 stroke:#FFA500,stroke-width:2px
+    %% Premium Styling (GitHub Dark Mode Optimized)
+    style Monitoring_Zone fill:rgba(0,0,0,0),stroke:#30363D,stroke-dasharray: 5 5
+    style Incident_Zone fill:rgba(255,62,62,0.05),stroke:#FF3E3E,stroke-dasharray: 5 5
+
+    style S fill:#0D1117,stroke:#00F0FF,stroke-width:3px,color:#00F0FF
+    style H fill:#0D1117,stroke:#FFA500,stroke-width:3px,color:#FFA500
+    style C fill:#0D1117,stroke:#FF3E3E,stroke-width:4px,color:#FF3E3E
+
+    %% Link Styling for Visual Flow
+    linkStyle 0 stroke:#00F0FF,stroke-width:2px
+    linkStyle 1 stroke:#FFA500,stroke-width:3px
+    linkStyle 2 stroke:#FF3E3E,stroke-width:3px,stroke-dasharray: 5 5
+    linkStyle 3 stroke:#8B949E,stroke-width:2px
 ```
 </p>
 
