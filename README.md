@@ -124,7 +124,7 @@ Neural-Gate-v3.1/
 
 ### 👤 Author
 AHMED ZARAI — AI Systems & Biometric Intelligence Developer
-⚡ “Powered by Neural Gate v3.1 — real-time AI crowd intelligence for security and analytics”
+### ⚡ “Powered by Neural Gate v3.1 — real-time AI crowd intelligence for security and analytics”
 
 
 ### 📜 License \& Copyright
