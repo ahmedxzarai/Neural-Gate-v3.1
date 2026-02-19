@@ -109,28 +109,43 @@ The system transitions between operational states based on the calculated **Pani
 <p align="center">
 
 ```mermaid
-graph LR
-    %% Optimized Nodes
+flowchart LR
+    %% ===============================
+    %% NEURAL GATE — THREAT STATE MACHINE
+    %% ===============================
+
+    %% Core States
     S((STABLE))
-    H[[HIGH]]
+    H([HIGH ALERT])
     C{{CRITICAL}}
 
-    %% Transitions
-    S -- "P > 0.4" --> H
-    H -- "P > 0.8" --> C
-    C -. "System Reset" .-> S
-    H -- "Cooldown" --> S
+    %% Operational Subgraph
+    subgraph NG["Neural Gate Deterministic Escalation Logic"]
+        direction LR
+        S -->|P > 0.40| H
+        H -->|P > 0.80| C
+        H -->|Cooldown\nP < 0.40| S
+        C -.->|System Reset| S
+    end
 
-    %% Premium GitHub Dark-Mode Styling
+    %% ===============================
+    %% STATE STYLING (Premium Dark Mode)
+    %% ===============================
+
+    style NG fill:#0B1220,stroke:#1F2937,stroke-width:1.5px,color:#9CA3AF
+
     style S fill:#0D1117,stroke:#00F0FF,stroke-width:3px,color:#00F0FF
-    style H fill:#0D1117,stroke:#FFA500,stroke-width:3px,color:#FFA500
-    style C fill:#0D1117,stroke:#FF3E3E,stroke-width:4px,color:#FF3E3E
+    style H fill:#0D1117,stroke:#F59E0B,stroke-width:3px,color:#F59E0B
+    style C fill:#0D1117,stroke:#EF4444,stroke-width:4px,color:#EF4444
 
-    %% Link Styling
+    %% ===============================
+    %% LINK STYLING
+    %% ===============================
+
     linkStyle 0 stroke:#00F0FF,stroke-width:2px
-    linkStyle 1 stroke:#FFA500,stroke-width:3px
-    linkStyle 2 stroke:#FF3E3E,stroke-width:2px,stroke-dasharray: 5 5
-    linkStyle 3 stroke:#8B949E,stroke-width:2px
+    linkStyle 1 stroke:#F59E0B,stroke-width:3px
+    linkStyle 2 stroke:#8B949E,stroke-width:2px
+    linkStyle 3 stroke:#EF4444,stroke-width:2px,stroke-dasharray: 6 6
 ```
 </p>
 
