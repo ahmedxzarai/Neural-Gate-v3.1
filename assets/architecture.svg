@@ -1,21 +1,16 @@
 <svg viewBox="0 0 1600 900" width="100%" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="bgGrad" cx="50%" cy="50%" r="75%">
-      <stop offset="0%" stop-color="#0A1426"/>
-      <stop offset="100%" stop-color="#04080F"/>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="80%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#020617"/>
     </radialGradient>
 
-    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
-      <path d="M80 0 L0 0 0 80" fill="none" stroke="#0E233F" stroke-width="1"/>
+    <pattern id="fineGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E293B" stroke-width="0.5"/>
     </pattern>
 
-    <linearGradient id="accent" x1="0%" y1="0%" x2="100%">
-      <stop offset="0%" stop-color="#00E5FF"/>
-      <stop offset="100%" stop-color="#4C6FFF"/>
-    </linearGradient>
-
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
@@ -23,93 +18,90 @@
     </filter>
 
     <style>
-      .title { fill:#FFFFFF; font-size:48px; font-family: 'Segoe UI', Impact, sans-serif; font-weight:700; letter-spacing:5px; filter:url(#glow); }
-      .subtitle { fill:#7F97B5; font-size:16px; font-family: 'Courier New', monospace; letter-spacing:3px; }
-      .panel-title { fill:#00E5FF; font-size:18px; font-weight:700; font-family: 'Segoe UI', sans-serif; text-transform: uppercase; }
-      .panel-text { fill:#9DB5D6; font-size:15px; font-family: 'Consolas', 'Courier New', monospace; }
-      .matrix-text { fill:#00E5FF; font-size:12px; font-family: 'Consolas', monospace; opacity: 0.5; }
+      /* Clean, Modern Typography */
+      .type-header { fill: #F8FAFC; font-family: 'Segoe UI', sans-serif; font-weight: 300; letter-spacing: 12px; font-size: 38px; text-transform: uppercase; }
+      .type-label { fill: #38BDF8; font-family: 'Segoe UI', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; }
+      .type-data { fill: #94A3B8; font-family: 'Consolas', monospace; font-size: 13px; letter-spacing: 1px; }
+      .type-highlight { fill: #2DD4BF; font-weight: bold; }
       
-      @keyframes matrixRain {
-        0% { transform: translateY(-50px); opacity: 0; }
-        50% { opacity: 1; }
-        100% { transform: translateY(150px); opacity: 0; }
-      }
-      
-      @keyframes signalFlow {
-        from { stroke-dashoffset: 1000; }
+      @keyframes signalMove {
+        from { stroke-dashoffset: 400; }
         to { stroke-dashoffset: 0; }
       }
+      @keyframes slowRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      @keyframes corePulse { 0% { opacity: 0.4; } 50% { opacity: 0.8; } 100% { opacity: 0.4; } }
     </style>
   </defs>
 
   <rect width="1600" height="900" fill="url(#bgGrad)"/>
-  <rect width="1600" height="900" fill="url(#grid)" opacity="0.3"/>
+  <rect width="1600" height="900" fill="url(#fineGrid)"/>
 
-  <g transform="translate(800, 80)">
-    <text text-anchor="middle" class="title">NEURAL GATE V3.1</text>
-    <text y="35" text-anchor="middle" class="subtitle">SYSTEM INTERFACE: ACTIVE SURVEILLANCE</text>
+  <g transform="translate(800, 80)" filter="url(#softGlow)">
+    <text text-anchor="middle" class="type-header">Neural Gate <tspan font-weight="800">3.1</tspan></text>
+    <path d="M-250,25 L250,25" stroke="#1E293B" stroke-width="1"/>
+    <rect x="-40" y="20" width="80" height="10" fill="#020617" stroke="#38BDF8" stroke-width="1"/>
+    <text y="28" text-anchor="middle" style="fill:#38BDF8; font-size:8px; font-family:sans-serif;">ENCRYPTED</text>
   </g>
 
   <g transform="translate(800,430)">
-    <circle r="160" fill="none" stroke="#1B3E6B" stroke-width="1" stroke-dasharray="10 20">
-      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="20s" repeatCount="indefinite"/>
+    <circle r="140" fill="none" stroke="#1E293B" stroke-width="1" stroke-dasharray="2 10">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="60s" repeatCount="indefinite"/>
     </circle>
-    <circle r="80" fill="#0B1728" stroke="url(#accent)" stroke-width="3" filter="url(#glow)"/>
-    <text y="8" text-anchor="middle" fill="#FFFFFF" font-family="Arial" font-size="20" font-weight="bold">AI CORE</text>
-  </g>
-
-  <g transform="translate(320,350)">
-    <rect width="320" height="180" rx="8" fill="rgba(12, 27, 49, 0.9)" stroke="#1B3E6B" stroke-width="2"/>
+    <circle r="110" fill="none" stroke="#38BDF8" stroke-width="0.5" opacity="0.3"/>
     
-    <g clip-path="inset(40px 0px 0px 0px)">
-      <text x="280" y="0" class="matrix-text" style="animation: matrixRain 2s infinite linear;">1 0 1 1 0</text>
-      <text x="250" y="0" class="matrix-text" style="animation: matrixRain 3s infinite linear 0.5s;">0 1 0 0 1</text>
-      <text x="220" y="0" class="matrix-text" style="animation: matrixRain 1.5s infinite linear 1s;">1 1 0 1 0</text>
-    </g>
+    <circle r="60" fill="none" stroke="#2DD4BF" stroke-width="2" filter="url(#softGlow)"/>
+    <circle r="45" fill="#0F172A" stroke="#1E293B" stroke-width="1"/>
+    <text y="5" text-anchor="middle" class="type-label" style="font-size:10px; fill:#F8FAFC">CORE</text>
+  </g>
 
-    <text x="20" y="30" class="panel-title">DATA_STREAM</text>
-    <g transform="translate(20, 75)">
-      <text y="0" class="panel-text">LINK: SECURE_WRP</text>
-      <text y="25" class="panel-text">PACKETS: 1024/ms</text>
-      <text y="60" class="panel-text" style="fill:#00E5FF">DECRYPTING...</text>
+  <g transform="translate(100,320)">
+    <rect width="320" height="200" rx="2" fill="rgba(15, 23, 42, 0.6)" stroke="#1E293B" stroke-width="1"/>
+    <path d="M0,35 L320,35" stroke="#1E293B" stroke-width="1"/>
+    <text x="20" y="24" class="type-label">Network Ingress</text>
+    <g transform="translate(20, 65)">
+      <text y="0" class="type-data">STATUS: <tspan class="type-highlight">OPTIMAL</tspan></text>
+      <text y="25" class="type-data">BITRATE: 852.1 GBPS</text>
+      <text y="50" class="type-data">PACKETS: 0.002% LOSS</text>
+      <text y="85" class="type-data" style="opacity:0.5">LOCATION: EDGE_NODE_LON</text>
     </g>
   </g>
 
-  <g transform="translate(960,350)">
-    <rect width="320" height="180" rx="8" fill="rgba(12, 27, 49, 0.9)" stroke="#1B3E6B" stroke-width="2"/>
-    <text x="20" y="30" class="panel-title">THREAT ENGINE</text>
-    <g transform="translate(20, 75)">
-      <text y="0" class="panel-text">THREAT: <tspan fill="#FF3E3E">MAXIMUM</tspan></text>
-      <text y="25" class="panel-text">TRACE: ACTIVE</text>
-      <text y="60" class="panel-text" style="fill:#FF3E3E">COUNTER_MEASURES: ON</text>
-    </g>
-    <g transform="translate(240, 150) scale(1,-1)">
-       <rect x="0" y="0" width="10" fill="#FF3E3E"><animate attributeName="height" values="20;80;20" dur="0.6s" repeatCount="indefinite"/></rect>
-       <rect x="15" y="0" width="10" fill="#FF3E3E"><animate attributeName="height" values="50;10;50" dur="0.8s" repeatCount="indefinite"/></rect>
+  <g transform="translate(1180,320)">
+    <rect width="320" height="200" rx="2" fill="rgba(15, 23, 42, 0.6)" stroke="#1E293B" stroke-width="1"/>
+    <path d="M0,35 L320,35" stroke="#1E293B" stroke-width="1"/>
+    <text x="20" y="24" class="type-label">Kernel Events</text>
+    <g transform="translate(20, 65)">
+      <text y="0" class="type-data">> Initializing neural link...</text>
+      <text y="25" class="type-data">> Synchronizing gate...</text>
+      <text y="50" class="type-data">> Buffer 0x88AF cleared.</text>
+      <text y="75" class="type-data" class="type-highlight">> Uplink ready.</text>
     </g>
   </g>
 
-  <g transform="translate(450,650)">
-    <rect width="700" height="200" rx="10" fill="rgba(12, 27, 49, 0.95)" stroke="#1B3E6B" stroke-width="2"/>
+  <g transform="translate(350,650)">
+    <rect width="900" height="180" rx="2" fill="rgba(15, 23, 42, 0.😎" stroke="#38BDF8" stroke-width="0.5" opacity="0.8"/>
     
-    <path fill="none" stroke="rgba(0, 229, 255, 0.3)" stroke-width="2" 
-          d="M0,150 L50,140 L100,160 L150,100 L200,140 L250,110 L300,150 L350,80 L400,140 L450,120 L500,160 L550,100 L600,140 L650,110 L700,150"
-          stroke-dasharray="1000" stroke-dashoffset="1000" style="animation: signalFlow 10s linear infinite;">
-    </path>
+    <g transform="translate(40, 60)">
+      <text y="0" class="type-label">System Command</text>
+      <text y="30" class="type-data">AI Confidence: 0.9984</text>
+      <text y="55" class="type-data">Threat Index: <tspan fill="#F43F5E">LOW</tspan></text>
+      <text y="85" class="type-highlight" style="font-size:11px">READY FOR INSTRUCTIONS</text>
+    </g>
 
-    <text x="350" y="35" text-anchor="middle" class="panel-title">COMMAND_DASHBOARD</text>
-    <g transform="translate(50, 85)">
-      <text y="0" class="panel-text">SIGNAL_STRENGTH: 98%</text>
-      <text y="30" class="panel-text">OS_KERNEL: v.3.1.0-STABLE</text>
-      <text y="60" class="panel-text">WAVEFORM: ACTIVE_PULSE</text>
-      <text y="90" class="panel-text" style="fill:#00E5FF">> SYSTEM LOCKED AND LOADED</text>
+    <g transform="translate(450, 60)">
+       <text x="0" y="-10" class="type-label" style="font-size:10px; opacity:0.5">Pulse Monitor</text>
+       <rect x="0" y="0" width="410" height="80" fill="#020617" stroke="#1E293B" stroke-width="1"/>
+       <svg x="5" y="5" width="400" height="70" viewBox="0 0 400 70">
+         <path d="M0,35 Q20,10 40,35 T80,35 T120,35 T160,35 T200,35 T240,35 T280,35 T320,35 T360,35 T400,35" 
+               fill="none" stroke="#2DD4BF" stroke-width="1.5" filter="url(#softGlow)"
+               stroke-dasharray="400" stroke-dashoffset="400">
+           <animate attributeName="stroke-dashoffset" from="400" to="0" dur="2s" repeatCount="indefinite" />
+         </path>
+       </svg>
     </g>
   </g>
 
-  <path d="M640,440 L715,440" stroke="url(#accent)" stroke-width="2" stroke-dasharray="5 5">
-    <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1s" repeatCount="indefinite"/>
-  </path>
-  <path d="M885,440 L960,440" stroke="url(#accent)" stroke-width="2" stroke-dasharray="5 5">
-    <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1s" repeatCount="indefinite"/>
-  </path>
+  <path d="M420,420 L660,420" stroke="#1E293B" stroke-width="1" stroke-dasharray="4 4"/>
+  <path d="M940,420 L1180,420" stroke="#1E293B" stroke-width="1" stroke-dasharray="4 4"/>
+
 </svg>
