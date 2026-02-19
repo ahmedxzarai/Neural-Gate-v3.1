@@ -112,82 +112,117 @@ The system transitions between operational states based on the calculated **Pani
 flowchart LR
 %% ==========================================================
 %% NEURAL GATE v3.1
-%% HIERARCHICAL BEHAVIORAL THREAT STATE MACHINE (HSM)
+%% MULTI-LAYER BEHAVIORAL CONTROL ARCHITECTURE
 %% ==========================================================
 
-%% ================= ROOT SYSTEM =================
-subgraph NG["Neural Gate Behavioral Intelligence System"]
+%% ================= INPUT LAYER =================
+subgraph INPUT["Sensor & Perception Layer"]
+direction TB
+V[Video Stream]
+D[YOLOv8 Detection]
+T[Multi-Object Tracking]
+V --> D --> T
+end
 
-direction LR
+%% ================= METRIC LAYER =================
+subgraph METRICS["Behavioral Metric Engine"]
+direction TB
+VEC[Vector Field Modeling]
+ACC[Acceleration Δv/Δt]
+DEN[Density ρ(x,y)]
+ENT[Spatial Entropy S]
+VEC --> ACC
+VEC --> DEN
+DEN --> ENT
+end
 
-%% ================= PRIMARY STATES =================
+%% ================= PANIC INDEX =================
+subgraph MODEL["Instability Modeling Core"]
+direction TB
+PI["Panic Index P = Σ(aᵢ·ρᵢ) + S"]
+CONF[Confidence Score]
+TEMP[Temporal Smoothing Window]
+PI --> TEMP --> CONF
+end
+
+%% ================= STATE MACHINE =================
+subgraph CONTROL["Deterministic Threat Controller (HSM)"]
+direction TB
 S((STABLE))
 H([HIGH ALERT])
 C{{CRITICAL}}
 
-%% ================= ESCALATION LOGIC =================
 S -->|P > 0.40| H
 H -->|P > 0.80| C
-H -->|Cooldown\nP < 0.40| S
+H -->|Cooldown| S
 C -.->|System Reset| S
+end
 
-%% ================= ENTRY / EXIT ACTIONS =================
-S --> ES[Entry: Initialize Monitoring]
-H --> EH[Entry: Enable Warning Protocol]
-C --> EC[Entry: Trigger Autonomous Response]
-
-ES --> MON[Continuous Vector Tracking]
-EH --> WARN[Activate Visual Alerts]
-EC --> RESP[Lock State + Log Incident]
-
-%% ================= DVR SUBSYSTEM =================
-subgraph DVR["Autonomous DVR Subsystem"]
-
+%% ================= RESPONSE LAYER =================
+subgraph RESPONSE["Autonomous Response System"]
 direction TB
-
-D1[(IDLE)]
-D2[(ARMED)]
-D3[(RECORDING)]
-
+ALERT[Visual + Audio Alerts]
+LOG[Incident Logging]
+DVR[(DVR Engine)]
+RECORD[[Recording Active]]
+ALERT --> LOG --> DVR --> RECORD
 end
 
-%% DVR Mapping
-S --> D1
-H --> D2
-C --> D3
-
+%% ================= OBSERVABILITY =================
+subgraph OBS["System Observability"]
+direction TB
+DASH[Command Dashboard]
+GRAPH[Live Velocity Graph]
+STATE[Real-Time State Indicator]
+GRAPH --> DASH
+STATE --> DASH
 end
 
-%% ================= VISUAL STYLING =================
+%% ================= CROSS-LAYER CONNECTIONS =================
 
-style NG fill:#0B1220,stroke:#1F2937,stroke-width:1.5px,color:#9CA3AF
-style DVR fill:#0E1625,stroke:#1F2937,stroke-width:1.2px,color:#9CA3AF
+T --> VEC
+ACC --> PI
+ENT --> PI
+CONF --> S
+CONF --> H
+CONF --> C
 
-%% Primary States
+S --> ALERT
+H --> ALERT
+C --> ALERT
+
+S --> STATE
+H --> STATE
+C --> STATE
+
+RECORD --> DASH
+
+%% ================= STYLING =================
+
+%% Layer containers
+style INPUT fill:#0B1220,stroke:#1F2937,color:#9CA3AF
+style METRICS fill:#0E1625,stroke:#1F2937,color:#9CA3AF
+style MODEL fill:#101826,stroke:#1F2937,color:#9CA3AF
+style CONTROL fill:#0B1220,stroke:#1F2937,color:#9CA3AF
+style RESPONSE fill:#101826,stroke:#1F2937,color:#9CA3AF
+style OBS fill:#0E1625,stroke:#1F2937,color:#9CA3AF
+
+%% Core states
 style S fill:#0D1117,stroke:#00F0FF,stroke-width:3px,color:#00F0FF
 style H fill:#0D1117,stroke:#F59E0B,stroke-width:3px,color:#F59E0B
 style C fill:#0D1117,stroke:#EF4444,stroke-width:4px,color:#EF4444
 
-%% Entry Actions
-style ES fill:#111827,stroke:#334155,color:#9CA3AF
-style EH fill:#111827,stroke:#F59E0B,color:#F59E0B
-style EC fill:#111827,stroke:#EF4444,color:#EF4444
+%% Critical components
+style PI fill:#111827,stroke:#7C3AED,stroke-width:2px,color:#C084FC
+style CONF fill:#111827,stroke:#6366F1,color:#A5B4FC
+style RECORD fill:#111827,stroke:#EF4444,stroke-width:3px,color:#EF4444
+style DVR fill:#111827,stroke:#F59E0B,color:#F59E0B
+style DASH fill:#111827,stroke:#00F0FF,color:#00F0FF
 
-%% Operational Blocks
-style MON fill:#0B1220,stroke:#334155,color:#9CA3AF
-style WARN fill:#0B1220,stroke:#F59E0B,color:#F59E0B
-style RESP fill:#0B1220,stroke:#EF4444,color:#EF4444
-
-%% DVR States
-style D1 fill:#0B1220,stroke:#334155,color:#9CA3AF
-style D2 fill:#0B1220,stroke:#F59E0B,color:#F59E0B
-style D3 fill:#0B1220,stroke:#EF4444,stroke-width:3px,color:#EF4444
-
-%% Link Styling
-linkStyle 0 stroke:#00F0FF,stroke-width:2px
-linkStyle 1 stroke:#F59E0B,stroke-width:3px
-linkStyle 2 stroke:#8B949E,stroke-width:2px
-linkStyle 3 stroke:#EF4444,stroke-width:2px,stroke-dasharray: 6 6
+%% Link styling (escalation emphasis)
+linkStyle 12 stroke:#00F0FF,stroke-width:2px
+linkStyle 13 stroke:#F59E0B,stroke-width:3px
+linkStyle 14 stroke:#EF4444,stroke-width:3px
 ```
 </p>
 
@@ -278,14 +313,18 @@ source venv/bin/activate
 pip install -r requirements.txt
 python app.py
 ```
+```
 Live at: http://localhost:5000
+```
 
 ## 🔹 Docker (Simulation Mode)
 ```bash
 docker build -t neural-gate:3.1 .
 docker run -p 5000:5000 neural-gate:3.1
 ```
+```
 Live at: http://localhost:5000
+```
 
 # 📊 Performance Profile
 
