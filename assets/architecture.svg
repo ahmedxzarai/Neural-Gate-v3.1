@@ -1,216 +1,30 @@
-<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+<svg width="900" height="300" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="300" fill="#0D1117" rx="15"/>
+  
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
 
-<!-- ================= BACKGROUND ================= -->
+  <g stroke-dasharray="8 8" stroke-width="2">
+    <line x1="150" y1="150" x2="350" y2="150" stroke="#00f0ff" opacity="0.6"/>
+    <line x1="350" y1="150" x2="550" y2="150" stroke="#7c3aed" opacity="0.6"/>
+    <line x1="550" y1="150" x2="750" y2="150" stroke="#ef4444" opacity="0.6"/>
+  </g>
 
-<rect width="1600" height="900" fill="#030712"/>
+  <circle cx="150" cy="150" r="45" fill="#0d1117" stroke="#00f0ff" stroke-width="3" filter="url(#glow)"/>
+  <text x="150" y="155" text-anchor="middle" fill="#00f0ff" font-family="Arial" font-weight="bold" font-size="12">SENSOR</text>
 
-<defs>
-  <radialGradient id="bgGlow" cx="50%" cy="50%" r="70%">
-    <stop offset="0%" stop-color="#0B1220"/>
-    <stop offset="100%" stop-color="#030712"/>
-  </radialGradient>
-</defs>
+  <circle cx="350" cy="150" r="45" fill="#0d1117" stroke="#7c3aed" stroke-width="3" filter="url(#glow)"/>
+  <text x="350" y="155" text-anchor="middle" fill="#c084fc" font-family="Arial" font-weight="bold" font-size="12">MODEL</text>
 
-<rect width="1600" height="900" fill="url(#bgGlow)"/>
+  <circle cx="550" cy="150" r="45" fill="#0d1117" stroke="#00f0ff" stroke-width="3" filter="url(#glow)"/>
+  <text x="550" y="155" text-anchor="middle" fill="#00f0ff" font-family="Arial" font-weight="bold" font-size="12">CONTROL</text>
 
-<!-- Animated Grid -->
-<defs>
-  <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-    <path d="M60 0 L0 0 0 60" fill="none" stroke="#0F172A" stroke-width="1"/>
-  </pattern>
-</defs>
-
-<rect width="1600" height="900" fill="url(#grid)" opacity="0.3">
-  <animate attributeName="opacity" values="0.2;0.35;0.2" dur="6s" repeatCount="indefinite"/>
-</rect>
-
-<!-- Glow Filter -->
-<defs>
-  <filter id="glow">
-    <feGaussianBlur stdDeviation="6" result="blur"/>
-    <feMerge>
-      <feMergeNode in="blur"/>
-      <feMergeNode in="SourceGraphic"/>
-    </feMerge>
-  </filter>
-
-  <linearGradient id="neon" x1="0%" y1="0%" x2="100%" y2="0%">
-    <stop offset="0%" stop-color="#00F0FF"/>
-    <stop offset="100%" stop-color="#7C3AED"/>
-  </linearGradient>
-
-  <linearGradient id="panelGlass" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" stop-color="white" stop-opacity="0.07"/>
-    <stop offset="100%" stop-color="white" stop-opacity="0.02"/>
-  </linearGradient>
-</defs>
-
-<!-- ================= TITLE ================= -->
-
-<text x="800" y="80"
-      text-anchor="middle"
-      fill="#00F0FF"
-      font-size="34"
-      font-family="Segoe UI"
-      letter-spacing="6"
-      filter="url(#glow)">
-      NEURAL GATE CONTROL ROOM
-</text>
-
-<text x="800" y="115"
-      text-anchor="middle"
-      fill="#9CA3AF"
-      font-size="14"
-      font-family="Segoe UI"
-      letter-spacing="3">
-      Real-Time Behavioral Intelligence Environment
-</text>
-
-<!-- ================= CENTRAL AI CORE ================= -->
-
-<circle cx="800" cy="450" r="90"
-        stroke="url(#neon)"
-        stroke-width="4"
-        fill="none"
-        filter="url(#glow)">
-  <animate attributeName="r" values="85;95;85" dur="4s" repeatCount="indefinite"/>
-</circle>
-
-<circle cx="800" cy="450" r="40"
-        fill="#00F0FF"
-        opacity="0.8"
-        filter="url(#glow)">
-  <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
-</circle>
-
-<text x="800" y="455"
-      text-anchor="middle"
-      fill="#000"
-      font-size="14"
-      font-family="Segoe UI"
-      font-weight="600">
-      AI CORE
-</text>
-
-<!-- Rotating Rings -->
-<circle cx="800" cy="450" r="150"
-        stroke="#00F0FF"
-        stroke-width="1.5"
-        fill="none"
-        stroke-dasharray="12 20"
-        opacity="0.5">
-  <animateTransform attributeName="transform"
-                    type="rotate"
-                    from="0 800 450"
-                    to="360 800 450"
-                    dur="20s"
-                    repeatCount="indefinite"/>
-</circle>
-
-<circle cx="800" cy="450" r="200"
-        stroke="#7C3AED"
-        stroke-width="1.2"
-        fill="none"
-        stroke-dasharray="6 14"
-        opacity="0.4">
-  <animateTransform attributeName="transform"
-                    type="rotate"
-                    from="360 800 450"
-                    to="0 800 450"
-                    dur="30s"
-                    repeatCount="indefinite"/>
-</circle>
-
-<!-- ================= DATA BEAMS ================= -->
-
-<g stroke="url(#neon)" stroke-width="3" fill="none" filter="url(#glow)">
-  <path d="M400 300 C600 350, 700 400, 800 450"
-        stroke-dasharray="10 120">
-    <animate attributeName="stroke-dashoffset"
-             from="0"
-             to="-130"
-             dur="3s"
-             repeatCount="indefinite"/>
-  </path>
-
-  <path d="M1200 300 C1000 350, 900 400, 800 450"
-        stroke-dasharray="10 120">
-    <animate attributeName="stroke-dashoffset"
-             from="0"
-             to="-130"
-             dur="3s"
-             begin="0.7s"
-             repeatCount="indefinite"/>
-  </path>
-</g>
-
-<!-- ================= SIDE PANELS ================= -->
-
-<style>
-  .panel {
-    fill: url(#panelGlass);
-    stroke: #1F2937;
-    stroke-width: 1.5;
-    rx: 20;
-  }
-  .panel-title {
-    fill: #FFFFFF;
-    font-family: 'Segoe UI';
-    font-size: 16px;
-    font-weight: 600;
-  }
-  .panel-sub {
-    fill: #9CA3AF;
-    font-family: 'Segoe UI';
-    font-size: 13px;
-  }
-</style>
-
-<!-- Left Panel -->
-<rect x="200" y="250" width="250" height="300" class="panel"/>
-<text x="225" y="290" class="panel-title">INPUT STREAM</text>
-<text x="225" y="320" class="panel-sub">RTSP / Camera Feed</text>
-<text x="225" y="350" class="panel-sub">Frame Sync: 30 FPS</text>
-<text x="225" y="380" class="panel-sub">Tracking: Active</text>
-
-<!-- Right Panel -->
-<rect x="1150" y="250" width="250" height="300" class="panel"/>
-<text x="1175" y="290" class="panel-title">THREAT ENGINE</text>
-<text x="1175" y="320" class="panel-sub">Panic Index: 0.62</text>
-<text x="1175" y="350" class="panel-sub">State: HIGH</text>
-<text x="1175" y="380" class="panel-sub">DVR: ARMED</text>
-
-<!-- Pulsing Threat Indicator -->
-<circle cx="1340" cy="330" r="8" fill="#FFA500">
-  <animate attributeName="r" values="6;10;6" dur="1.5s" repeatCount="indefinite"/>
-</circle>
-
-<!-- ================= BOTTOM DASHBOARD ================= -->
-
-<rect x="450" y="700" width="700" height="120" class="panel"/>
-
-<text x="800" y="735"
-      text-anchor="middle"
-      fill="#FFFFFF"
-      font-size="18"
-      font-family="Segoe UI"
-      font-weight="600">
-      COMMAND DASHBOARD
-</text>
-
-<!-- Fake Animated Graph -->
-<polyline fill="none"
-          stroke="#00F0FF"
-          stroke-width="2"
-          filter="url(#glow)"
-          points="500,780 600,760 700,790 800,750 900,770 1000,740 1100,760">
-  <animate attributeName="points"
-           dur="4s"
-           repeatCount="indefinite"
-           values="
-           500,780 600,760 700,790 800,750 900,770 1000,740 1100,760;
-           500,770 600,790 700,760 800,780 900,750 1000,770 1100,750;
-           500,780 600,760 700,790 800,750 900,770 1000,740 1100,760"/>
-</polyline>
-
+  <circle cx="750" cy="150" r="45" fill="#0d1117" stroke="#ef4444" stroke-width="3" filter="url(#glow)"/>
+  <text x="750" y="155" text-anchor="middle" fill="#ef4444" font-family="Arial" font-weight="bold" font-size="12">RESPONSE</text>
 </svg>
