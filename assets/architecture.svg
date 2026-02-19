@@ -13,6 +13,11 @@
       <stop offset="0%" stop-color="#00E5FF"/>
       <stop offset="100%" stop-color="#4C6FFF"/>
     </linearGradient>
+    
+    <linearGradient id="threatGrad" x1="0%" y1="0%" x2="100%">
+      <stop offset="0%" stop-color="#FF3E3E"/>
+      <stop offset="100%" stop-color="#8B0000"/>
+    </linearGradient>
 
     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="3" result="blur"/>
@@ -23,111 +28,96 @@
     </filter>
 
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap');
-      
-      .title { fill:#FFFFFF; font-size:48px; font-family: 'Orbitron', sans-serif; font-weight:700; letter-spacing:5px; filter:url(#glow); }
-      .subtitle { fill:#7F97B5; font-size:16px; font-family: 'Share Tech Mono', monospace; letter-spacing:3px; text-transform:uppercase; }
-      .panel-title { fill:#00E5FF; font-size:18px; font-weight:700; font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing:1px; }
-      .panel-text { fill:#9DB5D6; font-size:15px; font-family: 'Share Tech Mono', monospace; }
+      /* Using system fonts to avoid "Invalid Image Source" errors */
+      .title { fill:#FFFFFF; font-size:48px; font-family: 'Segoe UI', Impact, sans-serif; font-weight:700; letter-spacing:5px; filter:url(#glow); }
+      .subtitle { fill:#7F97B5; font-size:16px; font-family: 'Courier New', monospace; letter-spacing:3px; }
+      .panel-title { fill:#00E5FF; font-size:18px; font-weight:700; font-family: 'Segoe UI', sans-serif; text-transform: uppercase; }
+      .panel-text { fill:#9DB5D6; font-size:15px; font-family: 'Consolas', 'Courier New', monospace; }
       .highlight { fill:#00E5FF; font-weight:bold; }
       
-      /* Animations */
-      .scan-line { stroke: rgba(0, 229, 255, 0.3); stroke-width: 2; filter: url(#glow); }
-      .flicker { animation: flickerAnim 2s infinite; }
-      @keyframes flickerAnim {
-        0% { opacity: 1; } 5% { opacity: 0.8; } 10% { opacity: 1; } 15% { opacity: 0.9; } 20% { opacity: 1; } 100% { opacity: 1; }
-      }
-      @keyframes scan {
-        from { transform: translateY(0); }
-        to { transform: translateY(180px); }
-      }
+      .scan-line { stroke: rgba(0, 229, 255, 0.4); stroke-width: 2; filter: url(#glow); }
+      
       @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      @keyframes pulseCore { 0% { opacity: 0.8; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } 100% { opacity: 0.8; transform: scale(1); } }
     </style>
   </defs>
 
   <rect width="1600" height="900" fill="url(#bgGrad)"/>
   <rect width="1600" height="900" fill="url(#grid)" opacity="0.3"/>
 
-  <g class="flicker">
-    <text x="800" y="80" text-anchor="middle" class="title">NEURAL GATE V3.1</text>
-    <text x="800" y="110" text-anchor="middle" class="subtitle">MATHEMATICAL BEHAVIORAL INTELLIGENCE PLATFORM</text>
+  <g transform="translate(800, 80)">
+    <text text-anchor="middle" class="title">NEURAL GATE V3.1</text>
+    <text y="35" text-anchor="middle" class="subtitle">ADVANCED BEHAVIORAL SURVEILLANCE ENGINE</text>
   </g>
 
   <g transform="translate(800,430)">
-    <g style="animation: rotate 20s linear infinite; transform-origin: center;">
-      <circle r="180" fill="none" stroke="#1B3E6B" stroke-width="1" stroke-dasharray="10 20"/>
-    </g>
-    <g style="animation: rotate 10s linear reverse infinite; transform-origin: center;">
-      <circle r="160" fill="none" stroke="url(#accent)" stroke-width="2" stroke-dasharray="80 10" opacity="0.4"/>
-    </g>
-    
-    <circle r="90" fill="rgba(0, 229, 255, 0.05)" filter="url(#glow)"/>
-    <circle r="70" fill="#0B1728" stroke="url(#accent)" stroke-width="3">
-       <animate attributeName="stroke-width" values="2;4;2" dur="3s" repeatCount="indefinite"/>
+    <circle r="170" fill="none" stroke="#1B3E6B" stroke-width="1" stroke-dasharray="5 15">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="30s" repeatCount="indefinite"/>
     </circle>
-    <text y="10" text-anchor="middle" fill="#FFFFFF" font-family="Orbitron" font-size="20" font-weight="bold">AI CORE</text>
+    <circle r="140" fill="none" stroke="url(#accent)" stroke-width="2" stroke-dasharray="100 20" opacity="0.5">
+        <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="15s" repeatCount="indefinite"/>
+    </circle>
+    
+    <g style="animation: pulseCore 3s ease-in-out infinite; transform-origin: center;">
+        <circle r="80" fill="#0B1728" stroke="url(#accent)" stroke-width="3" filter="url(#glow)"/>
+        <text y="8" text-anchor="middle" fill="#FFFFFF" font-family="Arial" font-size="20" font-weight="bold">AI CORE</text>
+    </g>
   </g>
 
-  <g transform="translate(350,350)">
-    <rect width="300" height="180" rx="4" fill="rgba(12, 27, 49, 0.85)" stroke="#1B3E6B" stroke-width="2"/>
-    <line x1="0" y1="40" x2="300" y2="40" stroke="#1B3E6B" stroke-width="1"/>
+  <g transform="translate(320,350)">
+    <rect width="320" height="180" rx="8" fill="rgba(12, 27, 49, 0.9)" stroke="#1B3E6B" stroke-width="2"/>
+    <text x="20" y="30" class="panel-title">INPUT STREAM</text>
     
-    <line x1="2" y1="0" x2="298" y2="0" class="scan-line">
-      <animateTransform attributeName="transform" type="translate" from="0 45" to="0 175" dur="3s" repeatCount="indefinite"/>
+    <line x1="5" y1="40" x2="315" y2="40" class="scan-line">
+      <animateTransform attributeName="transform" type="translate" from="0 0" to="0 135" dur="2.5s" repeatCount="indefinite"/>
     </line>
 
-    <text x="20" y="28" class="panel-title">INPUT STREAM</text>
     <g transform="translate(20, 70)">
-      <text y="0" class="panel-text">SRC: CAM_08_NORTH</text>
-      <text y="25" class="panel-text">FPS: 30.00 [LOCKED]</text>
-      <text y="50" class="panel-text">RES: 1920x1080px</text>
-      <text y="85" class="panel-text highlight">STATUS: STABLE_MONITOR</text>
+      <text y="0" class="panel-text">SOURCE: AX-889_NODE</text>
+      <text y="25" class="panel-text">BITRATE: 12.4 Mbps</text>
+      <text y="50" class="panel-text">BUFFER: [||||||----]</text>
+      <text y="85" class="panel-text highlight">STABLE CONNECTION</text>
     </g>
   </g>
 
-  <g transform="translate(950,350)">
-    <rect width="300" height="180" rx="4" fill="rgba(12, 27, 49, 0.85)" stroke="#1B3E6B" stroke-width="2"/>
-    <line x1="0" y1="40" x2="300" y2="40" stroke="#1B3E6B" stroke-width="1"/>
-
-    <text x="20" y="28" class="panel-title">THREAT ENGINE</text>
+  <g transform="translate(960,350)">
+    <rect width="320" height="180" rx="8" fill="rgba(12, 27, 49, 0.9)" stroke="#1B3E6B" stroke-width="2"/>
+    <text x="20" y="30" class="panel-title">THREAT ENGINE</text>
+    
     <g transform="translate(20, 70)">
-      <text y="0" class="panel-text">PANIC_IDX: 0.627</text>
-      <text y="25" class="panel-text">THREAT: <tspan fill="#FF3E3E" font-weight="bold">HIGH</tspan></text>
-      <text y="50" class="panel-text">DVR_STATE: ARMED</text>
-      <text y="85" class="panel-text highlight">REC: IMMEDIATE_OSINT</text>
+      <text y="0" class="panel-text">THREAT LEVEL: <tspan fill="#FF3E3E" font-weight="bold">CRITICAL</tspan></text>
+      <text y="25" class="panel-text">ANOMALY_DET: 0.89</text>
+      <text y="50" class="panel-text">DANGER_ZONE: TRUE</text>
+      <text y="85" class="panel-text" style="fill:#FF3E3E">DEPLOYING COUNTERMEASURES</text>
     </g>
 
-    <g transform="translate(220, 140) scale(1,-1)">
-       <rect x="0" y="0" width="10" fill="#FF3E3E"><animate attributeName="height" values="10;40;20;50;10" dur="0.8s" repeatCount="indefinite"/></rect>
-       <rect x="15" y="0" width="10" fill="#FF3E3E"><animate attributeName="height" values="30;10;45;15;30" dur="1s" repeatCount="indefinite"/></rect>
-       <rect x="30" y="0" width="10" fill="#FF3E3E"><animate attributeName="height" values="20;50;10;30;20" dur="1.2s" repeatCount="indefinite"/></rect>
+    <g transform="translate(240, 150) scale(1,-1)">
+       <rect x="0" y="0" width="10" fill="url(#threatGrad)"><animate attributeName="height" values="20;60;30;70;20" dur="0.5s" repeatCount="indefinite"/></rect>
+       <rect x="15" y="0" width="10" fill="url(#threatGrad)"><animate attributeName="height" values="40;20;80;40;40" dur="0.7s" repeatCount="indefinite"/></rect>
+       <rect x="30" y="0" width="10" fill="url(#threatGrad)"><animate attributeName="height" values="30;70;20;60;30" dur="0.6s" repeatCount="indefinite"/></rect>
     </g>
   </g>
 
   <g transform="translate(450,650)">
-    <rect width="700" height="200" rx="4" fill="rgba(12, 27, 49, 0.9)" stroke="#1B3E6B" stroke-width="2"/>
+    <rect width="700" height="200" rx="10" fill="rgba(12, 27, 49, 0.95)" stroke="#1B3E6B" stroke-width="2"/>
     
-    <path d="M50,150 Q150,50 250,150 T450,150 T650,150" fill="none" stroke="rgba(0, 229, 255, 0.2)" stroke-width="3">
-       <animate attributeName="d" dur="4s" repeatCount="indefinite"
-                values="M50,150 Q150,50 250,150 T450,150 T650,150;
-                        M50,130 Q150,180 250,130 T450,130 T650,130;
-                        M50,150 Q150,50 250,150 T450,150 T650,150"/>
-    </path>
+    <polyline fill="none" stroke="rgba(255, 62, 62, 0.15)" stroke-width="4" points="50,150 100,100 150,160 200,40 250,150 300,120 350,170 400,30 450,140 500,110 550,160 600,20 650,150">
+      <animate attributeName="stroke" values="rgba(255,62,62,0.15);rgba(0,229,255,0.15);rgba(255,62,62,0.15)" dur="4s" repeatCount="indefinite"/>
+    </polyline>
 
     <text x="350" y="35" text-anchor="middle" class="panel-title">SYSTEM_COMMAND_DASHBOARD</text>
     <g transform="translate(50, 80)">
-      <text y="0" class="panel-text">AI_CORE_LOAD: [||||||||--] 78%</text>
-      <text y="30" class="panel-text">NET_LATENCY: 14ms</text>
-      <text y="60" class="panel-text">UPTIME: 104:12:09</text>
-      <text y="90" class="panel-text highlight">> ROOT ACCESS GRANTED</text>
+      <text y="0" class="panel-text">PROCESS_OVERLOAD: 92.4%</text>
+      <text y="30" class="panel-text">ENCRYPTION: AES-256-ACTIVE</text>
+      <text y="60" class="panel-text">TRACE_STATUS: UNDETECTED</text>
+      <text y="90" class="panel-text highlight">> TERMINAL_READY_</text>
     </g>
   </g>
 
-  <path d="M650,440 L710,440" stroke="url(#accent)" stroke-width="2" stroke-dasharray="5 5">
-    <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1s" repeatCount="indefinite"/>
+  <path d="M640,440 L715,440" stroke="url(#accent)" stroke-width="2" stroke-dasharray="4 8">
+    <animate attributeName="stroke-dashoffset" from="0" to="-24" dur="1s" repeatCount="indefinite"/>
   </path>
-  <path d="M890,440 L950,440" stroke="url(#accent)" stroke-width="2" stroke-dasharray="5 5">
-    <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1s" repeatCount="indefinite"/>
+  <path d="M885,440 L960,440" stroke="url(#accent)" stroke-width="2" stroke-dasharray="4 8">
+    <animate attributeName="stroke-dashoffset" from="0" to="-24" dur="1s" repeatCount="indefinite"/>
   </path>
-
 </svg>
