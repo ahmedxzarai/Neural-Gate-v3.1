@@ -1,135 +1,83 @@
-<svg width="100%" height="100%" viewBox="0 0 1500 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Neural Gate v3.1 Architecture Diagram">
-  <rect width="1500" height="900" fill="#0D1117" rx="20"/>
-
-  <text x="750" y="60" text-anchor="middle" font-family="Segoe UI, Arial" font-size="34" font-weight="800" fill="#00F0FF" filter="url(#glow)">
-    NEURAL GATE v3.1 | SYSTEM ARCHITECTURE
-  </text>
-
+<svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Neural Gate v3.1 Architecture">
+  <rect width="1200" height="600" fill="#0A0C10" rx="16"/>
+  
   <defs>
-    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#161B22"/>
-      <stop offset="100%" stop-color="#0D1117"/>
+    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.05)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.01)"/>
     </linearGradient>
 
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="5" result="blur"/>
+    <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
-    <filter id="redGlow">
-      <feGaussianBlur stdDeviation="8" result="blur"/>
-      <feFlood flood-color="#FF3E3E" result="color"/>
-      <feComposite in="color" in2="blur" operator="in" result="glow"/>
-      <feMerge>
-        <feMergeNode in="glow"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-
-    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#00F0FF"/>
-    </marker>
 
     <style>
-      .node-rect { fill: url(#boxGrad); stroke: #30363D; stroke-width: 2; rx: 12; transition: all 0.3s; }
-      .node-active { stroke: #00F0FF; stroke-width: 3; filter: url(#glow); }
-      .text-main { fill: #F0F6FC; font-family: 'Segoe UI', sans-serif; font-size: 18px; font-weight: 600; text-anchor: middle; }
-      .text-sub { fill: #8B949E; font-family: 'Segoe UI', sans-serif; font-size: 13px; text-anchor: middle; }
-      .flow-line { stroke: #30363D; stroke-width: 2; fill: none; stroke-dasharray: 8; }
-      .flow-active { stroke: #00F0FF; stroke-width: 3; stroke-dasharray: 100; stroke-dashoffset: 100; animation: dash 1.5s linear forwards; }
-      .alert-node { stroke: #FF3E3E !important; filter: url(#redGlow) !important; }
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;display=swap');
+      .node { fill: url(#glassGrad); stroke: rgba(0, 240, 255, 0.2); stroke-width: 1.5; rx: 10; transition: 0.4s; }
+      .label-main { fill: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; text-anchor: middle; }
+      .label-sub { fill: #8B949E; font-family: 'Inter', sans-serif; font-size: 11px; text-anchor: middle; }
+      .path-bg { stroke: #1F2937; stroke-width: 2; fill: none; }
+      .path-active { stroke: #00F0FF; stroke-width: 2.5; fill: none; stroke-dasharray: 10, 150; stroke-linecap: round; filter: url(#neonGlow); }
       
-      @keyframes dash { to { stroke-dashoffset: 0; } }
-      @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
-      .pulse { animation: pulse 2s infinite; }
+      /* Dynamic Animations */
+      .active-node { stroke: #00F0FF; stroke-width: 2; filter: url(#neonGlow); }
+      .pulse-anim { animation: pulse 2s infinite; }
+      @keyframes pulse { 0% { stroke-dashoffset: 200; } 100% { stroke-dashoffset: 0; } }
     </style>
   </defs>
 
-  <g opacity="0.6">
-    <text x="150" y="140" class="text-main" fill="#58A6FF">INPUT SOURCE</text>
-    <text x="750" y="140" class="text-main" fill="#58A6FF">NEURAL PROCESSING CORE</text>
-    <text x="1350" y="140" class="text-main" fill="#58A6FF">OUTPUT STACK</text>
+  <text x="600" y="45" text-anchor="middle" font-family="Inter" font-size="24" font-weight="800" fill="#00F0FF" style="letter-spacing: 2px;">NEURAL GATE <tspan fill="#FFF" font-weight="400" opacity="0.5">v3.1</tspan></text>
+
+  <g class="paths">
+    <path id="p1" d="M190 300 H320" class="path-bg"/>
+    <path id="p1_a" d="M190 300 H320" class="path-active pulse-anim"/>
+    
+    <path id="p2" d="M410 345 V410" class="path-bg"/>
+    <path id="p2_a" d="M410 345 V410" class="path-active pulse-anim"/>
+
+    <path id="p3" d="M500 455 Q630 455 630 365" class="path-bg"/>
+    <path id="p3_a" d="M500 455 Q630 455 630 365" class="path-active pulse-anim"/>
+
+    <path id="p4" d="M850 325 H940" class="path-bg"/>
+    <path id="p4_a" d="M850 325 H940" class="path-active pulse-anim"/>
   </g>
 
-  <g id="n_video">
-    <rect x="50" y="250" width="200" height="100" class="node-rect"/>
-    <text x="150" y="295" class="text-main">Live Stream</text>
-    <text x="150" y="320" class="text-sub">Webcam / OS Video</text>
+  <g id="node_video">
+    <rect x="40" y="260" width="150" height="80" class="node"/>
+    <text x="115" y="300" class="label-main">Live Stream</text>
+    <text x="115" y="320" class="label-sub">RTSP / Webcam</text>
   </g>
 
-  <g id="n_yolo">
-    <rect x="400" y="250" width="220" height="110" class="node-rect"/>
-    <text x="510" y="300" class="text-main">YOLOv8 Engine</text>
-    <text x="510" y="325" class="text-sub">Object Detection v8.1</text>
+  <g id="node_yolo">
+    <rect x="320" y="260" width="180" height="85" class="node"/>
+    <text x="410" y="305" class="label-main">YOLOv8 Engine</text>
+    <text x="410" y="325" class="label-sub">Object Inference</text>
   </g>
 
-  <g id="n_tracking">
-    <rect x="400" y="450" width="220" height="110" class="node-rect"/>
-    <text x="510" y="500" class="text-main">Centroid Tracking</text>
-    <text x="510" y="525" class="text-sub">Multi-ID Persistence</text>
+  <g id="node_metrics">
+    <rect x="630" y="280" width="220" height="90" class="node"/>
+    <text x="740" y="325" class="label-main">Behavioral Core</text>
+    <text x="740" y="345" class="label-sub">Panic Index / Velocity</text>
   </g>
 
-  <g id="n_metrics">
-    <rect x="750" y="350" width="250" height="120" class="node-rect"/>
-    <text x="875" y="400" class="text-main">Behavioral Analytics</text>
-    <text x="875" y="425" class="text-sub">Velocity | Panic | Coherence</text>
+  <g id="node_threat">
+    <rect x="940" y="280" width="180" height="90" class="node"/>
+    <text x="1030" y="325" class="label-main">Threat Engine</text>
+    <text x="1030" y="345" class="label-sub">Auto-DVR Capture</text>
   </g>
-
-  <g id="n_threat">
-    <rect x="1100" y="350" width="200" height="120" class="node-rect"/>
-    <text x="1200" y="400" class="text-main">Threat Engine</text>
-    <text x="1200" y="425" class="text-sub">Autonomous Logic</text>
-  </g>
-
-  <g id="n_dvr">
-    <rect x="1350" y="250" width="130" height="90" class="node-rect"/>
-    <text x="1415" y="295" class="text-main">DVR</text>
-    <text x="1415" y="315" class="text-sub">Auto-Capture</text>
-  </g>
-
-  <g id="n_ui">
-    <rect x="1350" y="450" width="130" height="90" class="node-rect"/>
-    <text x="1415" y="495" class="text-main">Dashboard</text>
-    <text x="1415" y="515" class="text-sub">Socket.IO Live</text>
-  </g>
-
-  <path id="f1" d="M250 300 H400" class="flow-line" marker-end="url(#arrowhead)"/>
-  <path id="f2" d="M510 360 V450" class="flow-line" marker-end="url(#arrowhead)"/>
-  <path id="f3" d="M620 505 Q750 505 750 410" class="flow-line" marker-end="url(#arrowhead)"/>
-  <path id="f4" d="M1000 410 H1100" class="flow-line" marker-end="url(#arrowhead)"/>
-  <path id="f5" d="M1300 410 Q1350 410 1350 300" class="flow-line" marker-end="url(#arrowhead)"/>
-  <path id="f6" d="M1300 410 Q1350 410 1350 495" class="flow-line" marker-end="url(#arrowhead)"/>
 
   <script>
-    const steps = [
-      { f: 'f1', n: 'n_yolo' },
-      { f: 'f2', n: 'n_tracking' },
-      { f: 'f3', n: 'n_metrics' },
-      { f: 'f4', n: 'n_threat' },
-      { f: 'f5', n: 'n_dvr', alert: true },
-      { f: 'f6', n: 'n_ui' }
-    ];
+    const steps = ['node_video', 'node_yolo', 'node_metrics', 'node_threat'];
+    let current = 0;
 
-    function runCycle() {
-      steps.forEach((step, i) => {
-        setTimeout(() => {
-          const flow = document.getElementById(step.f);
-          const node = document.getElementById(step.n).querySelector('.node-rect');
-          
-          flow.classList.add('flow-active');
-          node.classList.add('node-active');
-          if(step.alert) node.classList.add('alert-node');
-
-          setTimeout(() => {
-            flow.classList.remove('flow-active');
-            node.classList.remove('node-active');
-            if(step.alert) node.classList.remove('alert-node');
-          }, 1200);
-        }, i * 1000);
-      });
+    function highlight() {
+      steps.forEach(id => document.getElementById(id).querySelector('rect').classList.remove('active-node'));
+      document.getElementById(steps[current]).querySelector('rect').classList.add('active-node');
+      current = (current + 1) % steps.length;
     }
 
-    setInterval(runCycle, steps.length * 1000 + 1000);
-    runCycle();
+    setInterval(highlight, 1500);
+    highlight();
   </script>
 </svg>
