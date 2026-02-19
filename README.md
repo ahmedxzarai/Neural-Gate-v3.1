@@ -1,132 +1,110 @@
-### 🛡️ Neural Gate v3.1 — AI Crowd Intelligence & Autonomous Incident Capture
+<div align="center">
+  <img src="https://img.icons8.com/nolan/128/artificial-intelligence.png" width="80">
+  <h1>🚨 Neural Gate v3.1</h1>
+  <p><b>AI Crowd Intelligence & Autonomous Incident Capture</b></p>
 
-AI-powered surveillance dashboard with real-time crowd analysis, threat detection, and autonomous recording. Designed for high-tech security monitoring and advanced behavioral metrics.
+  ![YOLOv8](https://img.shields.io/badge/YOLOv8-Inference-00FF00?style=for-the-badge&logo=ai&logoColor=white)
+  ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+  ![Python 3.10](https://img.shields.io/badge/Python-3.10-3776AB?style=for-the-badge&logo=python&logoColor=white)
+  ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
+  <p><i>Real-time AI surveillance dashboard with autonomous threat detection and behavioral analytics.</i></p>
+</div>
 
-### ⚡ Features
+---
 
-- Real-Time Detection: YOLOv8 multi-object tracking optimized for live CPU/GPU feeds.
-- Behavioral Metrics: Calculates Velocity, Coherence, Panic Index, and Threat Level on-the-fly.
-- Autonomous Recording: Automatically records video when threat level is HIGH or CRITICAL.
-- Interactive Dashboard: Glassmorphic panels, neon glow metrics, animated cyber particles, velocity charts, live “LIVE” indicator, and flashing threat badge.
-- Infrastructure-Ready: Fully containerized for deployment via Docker with minimal setup.
-
-## 🤖 Smart Input Auto-Detection
-This project is built with *Environment Awareness*:
-- *Local Mode*: When run normally, the system automatically binds to your hardware webcam (/dev/video0).
-- *Docker Mode*: When containerized, the system automatically switches to a high-fidelity video simulation (demo_video.mp4) to ensure portability across Windows/Linux without hardware driver errors.
-
-
-### 🛠️ Tech Stack
-
-- AI Engine: YOLOv8 (Ultralytics)
-- Backend: Python 3.10 / Flask / Flask-SocketIO / Eventlet
-- Frontend: HTML5 / CSS3 / JavaScript / Chart.js / Cyberpunk styling
-- Infrastructure: Docker / WSL2
+### 🚀 Overview
+*Neural Gate v3.1* is a high-performance surveillance dashboard designed for automated security monitoring. It utilizes *YOLOv8* for multi-object tracking and an custom *Inference Engine* to quantify crowd behavior in real-time.
 
 
-### 📦 Getting Started
 
-🚀 Installation & Launch
+### ⚡ Core Capabilities
+* *Behavioral Metrics:* On-the-fly calculation of Velocity, Coherence, and the *Panic Index*.
+* *Autonomous Incident Capture:* Triggers DVR-style recording automatically when the Threat Level reaches HIGH or CRITICAL.
+* *Cyberpunk UI:* Glassmorphic panels, neon-glow metrics, and animated particle backgrounds.
+* *Smart Input Auto-Detection:* * *Local:* Binds to hardware /dev/video0 (Webcam).
+    * *Docker:* Switches to a high-fidelity MP4 simulation for zero-driver portable deployment.
 
-1️⃣ Local Mode (Webcam)
+---
+
+### 🧠 Mathematical Modeling
+The system goes beyond simple detection by analyzing crowd dynamics through vector calculus:
+
+* *Panic Index ($P$):* Calculated as a function of average acceleration ($a$), crowd density ($\rho$), and spatial entropy ($S$):
+  $$P = \sum (a \cdot \rho) + S$$
+* *Threat Assessment:* A weighted state-machine that evaluates cumulative risk factors to transition between STABLE → HIGH → CRITICAL.
+
+---
+
+### 📊 Metric Intelligence Matrix
+
+| Metric | logic / Description |
+| :--- | :--- |
+| *Velocity* | Average displacement of crowd vectors over $\Delta t$ |
+| *Coherence* | Alignment coefficient of movement trajectories |
+| *Panic Index* | Derived from sudden acceleration and chaotic spread |
+| *Auto-Record* | Triggered immediately when *Threat ≥ 75%* |
+
+🚨 Auto-recording triggers when Threat ≥ HIGH
+
+---
+
+### 📦 Project Structure
+```text
+Neural-Gate-v3.1/
+├── app.py                # Flask-SocketIO Core Server
+├── engine.py             # YOLOv8 Inference Logic
+├── metrics.py            # Behavioral Calculus Engine
+├── config.py             # Hyperparameters & Constants
+├── static/               # Assets & Recordings
+├── templates/            # Cyberpunk Dashboard UI
+├── Dockerfile            # Container Orchestration
+└── requirements.txt      # Dependency Stack
+```
+---
+
+### 🖥️ Installation & Deployment
+<details>
+<summary><b>1. Local Development (Webcam Mode)</b></summary>
 Ideal for real-time testing on your laptop.
 
 ```bash
 git clone https://github.com/ahmedxzarai/Neural-Gate-v3.1
 cd Neural-Gate-v3.1
-
-# Create and activate a virtual environment
 python -m venv venv
-# On Mac use:
-source venv/bin/activate 
-# On Windows use:
-.\venv\Scripts\activate
-
+# Activate & Install
+source venv/bin/activate  # Windows: .\venv\Scripts\activate
 pip install -r requirements.txt
 python app.py
 ```
-Access at: http://localhost:5000
-
-2️⃣ Docker Mode (Simulation)
+Live at: http://localhost:5000
+</details>
+<details>
+<summary><b>2. Docker Deployment (Simulation Mode)</b></summary>
 Ideal for deployment, portfolios, and servers.
 
 ```bash
 docker build -t neural-gate:3.1 .
 docker run -p 5000:5000 neural-gate:3.1
 ```
-Access at: http://localhost:5000
+Live at: http://localhost:5000
+</details>
 
-**💡 Note:** To persist recordings to your host machine, run with a volume:
-```bash
-`docker run -p 5000:5000 -v ${PWD}/recordings:/app/recordings neural-gate:3.1`
-```
+---
 
-### 🎛️ System Architecture
+### 🔥 Dashboard Highlights
+* Live "LIVE" Indicator: Pulse-animation for active stream monitoring.
+* Dynamic Charts: Real-time velocity trends rendered via Chart.js.
+* Visual Alerts: Neon-red flashing overlays triggered by critical threat detection.
 
-```text
-[Input Source] -> [YOLOv8 AI Engine] -> [Tracking & Metrics]
-      |                |                         |
-   Webcam / MP4   Object Detection        Velocity / Threat / Panic
-      |________________|_______________________|
-                       |
-                  [WebSocket Server]
-                       |
-             [Premium Neural Gate Dashboard]
-```
-
-### 📊 Metrics
-
-| Metric           | Description                                     |
-| ---------------- | ----------------------------------------------- |
-| **People**       | Number of detected individuals                  |
-| **Velocity**     | Average movement speed of the crowd             |
-| **Coherence**    | Alignment of crowd movement vectors             |
-| **Panic**        | Derived from acceleration, spread, and entropy  |
-| **Threat**       | Risk assessment: `STABLE` → `HIGH` → `CRITICAL` |
-| **FPS / Uptime** | Live frame rate and system runtime              |
-
-
-🚨 Auto-recording triggers when Threat ≥ HIGH
-
-### 🖥️ Dashboard Highlights
-
-- Live Red “LIVE” Indicator: Always shows streaming status
-- Auto Recording Badge: Blinks when system is recording
-- Threat-Level Flashing: High → red flash, Critical → neon red blink
-- Neon / Cyberpunk Design: Glassmorphic panels, smooth glow, animated particle background
-- Dynamic Charts: Velocity trend over the last 20 frames
-
-### 📦 Project Structure
-
-```t
-Neural-Gate-v3.1/
-├─ app.py                # Flask server + SocketIO streaming
-├─ engine.py             # YOLOv8 crowd detection & metrics
-├─ metrics.py            # Behavioral metric computations
-├─ config.py             # Global constants / frame size / FPS
-├─ static/
-│  ├─ demo_video.mp4     # Demo video for Docker mode
-│  └─ ...                # Any additional assets
-├─ templates/
-│  └─ index.html         # Premium dashboard UI
-├─ Dockerfile            # Container setup
-├─ requirements.txt      # Python dependencies
-├─ LICENSE               # MIT License file
-├─ .dockerignore
-├─ .gitignore
-└─ README.md             # This file
-```
-
-
-
-
+---
 
 ### 👤 Author
-AHMED ZARAI — AI Systems & Biometric Intelligence Developer
-### ⚡ “Powered by Neural Gate v3.1 — real-time AI crowd intelligence for security and analytics”
+**AHMED ZARAI**<br>
+*AI Systems & Biometric Intelligence Developer*
+"⚡Powered by Neural Gate v3.1 — Anticipating threats through crowd intelligence."
+<br><br><br>
 
-
-### 📜 License \& Copyright
-Copyright © 2026 AHMED ZARAI. Distributed under the MIT License. See LICENSE for more information.
-
+<div align="center">
+<p>Copyright © 2026 AHMED ZARAI. Distributed under the MIT License.</p>
+</div>
