@@ -107,15 +107,12 @@
 
 <!-- ================= SATELLITES ORBITS ================= -->
 <g transform="translate(800,450)">
-  <!-- Satellite Orbit 1 -->
   <circle cx="0" cy="-180" r="8" class="satellite">
     <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="10s" repeatCount="indefinite"/>
   </circle>
-  <!-- Satellite Orbit 2 -->
   <circle cx="0" cy="120" r="6" class="satellite">
     <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="12s" repeatCount="indefinite"/>
   </circle>
-  <!-- Satellite Orbit 3 -->
   <circle cx="0" cy="-240" r="5" class="satellite">
     <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="14s" repeatCount="indefinite"/>
   </circle>
@@ -136,6 +133,11 @@
 <g transform="translate(440,680)">
   <rect width="720" height="140" class="panel"/>
   <text x="360" y="30" text-anchor="middle" fill="#FFFFFF" font-size="18" font-weight="600">COMMAND DASHBOARD</text>
+  <text x="30" y="60" class="sub-text">AI Core Load: 78%</text>
+  <text x="30" y="80" class="sub-text">Threat Escalation: 62%</text>
+  <text x="30" y="100" class="sub-text">Input Stream Health: Optimal</text>
+  <text x="30" y="120" class="sub-text">Neural Pulse Activity: High</text>
+  <text x="30" y="140" class="sub-text highlight">DVR Status: ARMED</text>
 </g>
 
 </svg>
