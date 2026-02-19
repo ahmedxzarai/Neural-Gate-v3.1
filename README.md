@@ -104,10 +104,6 @@ This enables detection of emergent instability rather than isolated anomalies.
 ---
 
 # 🚨 Deterministic Threat Escalation
-
-<details>
-<summary><b>🔍 Click to expand: Threat Logic & Transitions</b></summary>
-
 ### 🛡️ Threat Management Protocol
 The system transitions between operational states based on the calculated **Panic Index ($P$)**:
 
@@ -140,10 +136,7 @@ graph LR
 | *HIGH* | $0.4 \leq P < 0.8$ | Analytics Warning | 🟠 Pulsing Orange | *ARMED* |
 | *CRITICAL* | $P \geq 0.8$ | Autonomous Response | 🔴 Flashing Red | *RECORDING* |
 
-</details>
-
 ##### 🎥 Autonomous Incident Capture
-
 When:
 ```text
 Threat ≥ 75%
