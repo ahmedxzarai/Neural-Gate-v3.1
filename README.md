@@ -58,7 +58,9 @@ docker run -p 5000:5000 neural-gate:3.1
 Access at: http://localhost:5000
 
 **💡 Note:** To persist recordings to your host machine, run with a volume:
+```bash
 `docker run -p 5000:5000 -v ${PWD}/recordings:/app/recordings neural-gate:3.1`
+```
 
 ### 🎛️ System Architecture
 
@@ -97,7 +99,7 @@ Access at: http://localhost:5000
 
 ### 📦 Project Structure
 
-```text
+```t
 Neural-Gate-v3.1/
 ├─ app.py                # Flask server + SocketIO streaming
 ├─ engine.py             # YOLOv8 crowd detection & metrics
@@ -117,11 +119,14 @@ Neural-Gate-v3.1/
 ```
 
 
+
+
+
 ### 👤 Author
 AHMED ZARAI — AI Systems & Biometric Intelligence Developer
 ⚡ “Powered by Neural Gate v3.1 — real-time AI crowd intelligence for security and analytics”
 
 
 ### 📜 License \& Copyright
-- Copyright © 2026 AHMED ZARAI. Distributed under the MIT License. See LICENSE for more information.
+Copyright © 2026 AHMED ZARAI. Distributed under the MIT License. See LICENSE for more information.
 
