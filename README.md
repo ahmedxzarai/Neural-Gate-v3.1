@@ -104,7 +104,10 @@ This enables detection of emergent instability rather than isolated anomalies.
 ---
 
 # 🚨 Deterministic Threat Escalation
+
+### 🚨 Threat State Machine
 The system transitions between operational states based on the calculated *Panic Index ($P$)*:
+
 ```mermaid
 graph LR
     %% Node Definitions
@@ -126,24 +129,13 @@ graph LR
     %% Connection Styling
     linkStyle 1 stroke:#FF3E3E,stroke-width:3px
     linkStyle 0 stroke:#FFA500,stroke-width:2px
-
-
+```
 ### 📋 State-Action Logic Matrix
-
 | Current State | Threshold ($P$) | System Action | Dash Indicator | DVR Status |
 | :--- | :--- | :--- | :--- | :--- |
 | *STABLE* | $P < 0.4$ | Standard Monitoring | 🟢 Solid Green | IDLE |
 | *HIGH* | $0.4 \leq P < 0.8$ | Analytics Warning | 🟠 Pulsing Orange | *ARMED* |
 | *CRITICAL* | $P \geq 0.8$ | Autonomous Response | 🔴 Flashing Red | *RECORDING* |
-
-Transition triggers:
-
-- Velocity spike threshold
-- Coherence collapse
-- Density fluctuation anomaly
-- Panic Index ≥ configured risk level
-
----
 
 # 🎥 Autonomous Incident Capture
 
