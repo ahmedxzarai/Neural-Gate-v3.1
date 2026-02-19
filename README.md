@@ -1,14 +1,21 @@
 <div align="center">
-  <img src="https://img.icons8.com/nolan/128/artificial-intelligence.png" width="80">
-  <h1>🚨 Neural Gate v3.1</h1>
-  <p><b>AI Crowd Intelligence & Autonomous Incident Capture</b></p>
 
-  ![YOLOv8](https://img.shields.io/badge/YOLOv8-Inference-00FF00?style=for-the-badge&logo=ai&logoColor=white)
-  ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-  ![Python 3.10](https://img.shields.io/badge/Python-3.10-3776AB?style=for-the-badge&logo=python&logoColor=white)
-  ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+<img src="https://img.icons8.com/nolan/128/artificial-intelligence.png" width="90"/>
 
-  <p><i>Real-time AI surveillance dashboard with autonomous threat detection and behavioral analytics.</i></p>
+# 🚨 NEURAL GATE v3.1
+### **Crowd Intelligence • Autonomous Threat Detection • Real-Time Behavioral Analytics**
+
+<p>
+<img src="https://img.shields.io/badge/YOLOv8-Real--Time%20Inference-00F0FF?style=for-the-badge&logo=ai&logoColor=white"/>
+<img src="https://img.shields.io/badge/Flask--SocketIO-Low%20Latency-black?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/Docker-Production%20Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
+<img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+<img src="https://img.shields.io/badge/License-MIT-FFD700?style=for-the-badge"/>
+</p>
+
+### ⚡ Next-Generation AI Surveillance Engine  
+*From Detection to Behavioral Intelligence*
+
 </div>
 
 ---
@@ -22,7 +29,8 @@
 * *Behavioral Metrics:* On-the-fly calculation of Velocity, Coherence, and the *Panic Index*.
 * *Autonomous Incident Capture:* Triggers DVR-style recording automatically when the Threat Level reaches HIGH or CRITICAL.
 * *Cyberpunk UI:* Glassmorphic panels, neon-glow metrics, and animated particle backgrounds.
-* *Smart Input Auto-Detection:* * *Local:* Binds to hardware /dev/video0 (Webcam).
+* *Smart Input Auto-Detection:* 
+    * *Local:* Binds to hardware /dev/video0 (Webcam).
     * *Docker:* Switches to a high-fidelity MP4 simulation for zero-driver portable deployment.
 
 ---
@@ -66,7 +74,6 @@ Neural-Gate-v3.1/
 ### 🖥️ Installation & Deployment
 <details>
 <summary><b>1. Local Development (Webcam Mode)</b></summary>
-Ideal for real-time testing on your laptop.
 
 ```bash
 git clone https://github.com/ahmedxzarai/Neural-Gate-v3.1
@@ -81,7 +88,6 @@ Live at: http://localhost:5000
 </details>
 <details>
 <summary><b>2. Docker Deployment (Simulation Mode)</b></summary>
-Ideal for deployment, portfolios, and servers.
 
 ```bash
 docker build -t neural-gate:3.1 .
@@ -101,8 +107,8 @@ Live at: http://localhost:5000
 
 ### 👤 Author
 **AHMED ZARAI**<br>
-*AI Systems & Biometric Intelligence Developer*
-"⚡Powered by Neural Gate v3.1 — Anticipating threats through crowd intelligence."
+*AI Systems & Biometric Intelligence Developer*<br>
+⚡Powered by Neural Gate v3.1 — Anticipating threats through crowd intelligence.
 <br><br><br>
 
 <div align="center">
