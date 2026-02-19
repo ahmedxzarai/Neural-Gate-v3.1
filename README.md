@@ -20,6 +20,13 @@
   <img src="https://img.shields.io/badge/Status-Active%20Development-00C853?style=flat-square"/>
 </p>
 
+<div align="center">
+
+### ⚡ Next-Generation AI Surveillance Engine  
+*From Detection to Behavioral Intelligence*
+
+</div>
+
 ---
 
 ## 🎬 Live Demo
@@ -84,22 +91,51 @@ It analyzes *emergent behavior*.
 # 📐 Mathematical Threat Modeling
 
 Panic Index formulation:
-```text
-P = Σ (a_i · ρ_i) + S
-```
-Where:
-- a_i → Acceleration vectors  
-- ρ_i → Local density weighting  
-- S → Spatial entropy coefficient  
+
+$$P = \sum (a_{i} \cdot \rho_{i}) + S$$
+
+**Where:**
+* **$a_{i}$** = acceleration vectors
+* **$\rho_{i}$** = local density weight
+* **$S$** = spatial entropy (chaotic dispersion)  
 
 This enables detection of emergent instability rather than isolated anomalies.
 
 ---
 
 # 🚨 Deterministic Threat Escalation
-```text
-STABLE → ALERT → HIGH → CRITICAL
-```
+The system transitions between operational states based on the calculated *Panic Index ($P$)*:
+```mermaid
+graph LR
+    %% Node Definitions
+    S((STABLE))
+    H[[HIGH]]
+    C{{CRITICAL}}
+
+    %% Transitions
+    S -- "P > 0.4" --> H
+    H -- "P > 0.8" --> C
+    C -- "Manual Override" --> S
+    H -- "Cool Down" --> S
+
+    %% Styling for Premium Look
+    style S fill:#161B22,stroke:#00F0FF,stroke-width:2px,color:#E2E8F0
+    style H fill:#161B22,stroke:#FFA500,stroke-width:3px,color:#E2E8F0
+    style C fill:#161B22,stroke:#FF3E3E,stroke-width:4px,color:#FF3E3E
+    
+    %% Connection Styling
+    linkStyle 1 stroke:#FF3E3E,stroke-width:3px
+    linkStyle 0 stroke:#FFA500,stroke-width:2px
+
+
+### 📋 State-Action Logic Matrix
+
+| Current State | Threshold ($P$) | System Action | Dash Indicator | DVR Status |
+| :--- | :--- | :--- | :--- | :--- |
+| *STABLE* | $P < 0.4$ | Standard Monitoring | 🟢 Solid Green | IDLE |
+| *HIGH* | $0.4 \leq P < 0.8$ | Analytics Warning | 🟠 Pulsing Orange | *ARMED* |
+| *CRITICAL* | $P \geq 0.8$ | Autonomous Response | 🔴 Flashing Red | *RECORDING* |
+
 Transition triggers:
 
 - Velocity spike threshold
