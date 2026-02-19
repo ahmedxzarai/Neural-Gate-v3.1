@@ -31,15 +31,30 @@
     .panel-text { font-family:'Segoe UI'; fill:#FFFFFF; font-size:13px; }
     .sub-text { fill:#9CA3AF; font-size:12px; }
     .satellite { fill:#00F0FF; filter:url(#glow); }
+    .satellite-blink { fill:#00F0FF; filter:url(#glow); opacity:0.8; }
     .panel { fill:url(#panelGlass); stroke:#1F2937; stroke-width:1.5; rx:20; }
     .thermal { fill:#FF3E3E; filter:url(#glow); }
     .highlight { fill:#00F0FF; font-weight:600; }
     .depth-layer { filter:url(#glow); opacity:0.9; }
     .neural-line { stroke:url(#neon); stroke-width:2; fill:none; filter:url(#glow); stroke-dasharray:8 50;}
+    .icon { fill:#00F0FF; filter:url(#glow); }
+    .radar-ring { fill:none; stroke:#00F0FF; stroke-width:1.5; opacity:0.3; filter:url(#glow); stroke-dasharray:4 6;}
+    .grid-line { stroke:#0F172A; stroke-width:1; opacity:0.25;}
+    .data-stream { stroke:#00F0FF; stroke-width:1.8; fill:none; filter:url(#glow); stroke-dasharray:4 20;}
   </style>
 </defs>
 
-<rect width="1600" height="900" fill="url(#bgGlow)"/>
+<!-- ================= HOLOGRAPHIC GRID ================= -->
+<g id="holo-grid">
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M60 0 L0 0 0 60" class="grid-line"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#grid)">
+    <animateTransform attributeName="transform" type="rotate" from="0 800 450" to="360 800 450" dur="60s" repeatCount="indefinite"/>
+  </rect>
+</g>
 
 <!-- ================= TITLE ================= -->
 <text x="800" y="60" text-anchor="middle" fill="#00F0FF" font-size="34" font-family="Segoe UI" letter-spacing="6" filter="url(#glow)">
@@ -58,32 +73,49 @@
 </circle>
 <text x="800" y="455" text-anchor="middle" fill="#000" font-size="14" font-family="Segoe UI" font-weight="600">AI CORE</text>
 
+<!-- ================= RADAR RINGS ================= -->
+<circle cx="800" cy="450" r="120" class="radar-ring">
+  <animateTransform attributeName="transform" type="rotate" from="0 800 450" to="360 800 450" dur="15s" repeatCount="indefinite"/>
+</circle>
+<circle cx="800" cy="450" r="160" class="radar-ring">
+  <animateTransform attributeName="transform" type="rotate" from="360 800 450" to="0 800 450" dur="22s" repeatCount="indefinite"/>
+</circle>
+<circle cx="800" cy="450" r="200" class="radar-ring">
+  <animateTransform attributeName="transform" type="rotate" from="0 800 450" to="360 800 450" dur="28s" repeatCount="indefinite"/>
+</circle>
+
 <!-- ================= MULTI-LEVEL PANELS ================= -->
 <!-- Left: Input Stream -->
 <g transform="translate(180,240)">
   <rect x="0" y="0" width="260" height="320" fill="#0F1625" rx="20" opacity="0.3"/>
   <rect width="260" height="320" class="panel"/>
-  <text x="10" y="40" class="panel-text" font-weight="600">INPUT STREAM</text>
-  <text x="10" y="70" class="sub-text">Status: Active</text>
-  <text x="10" y="90" class="sub-text">FPS: 30</text>
-  <text x="10" y="110" class="sub-text">Resolution: 1920x1080</text>
-  <text x="10" y="130" class="sub-text">Tracked Objects: 12</text>
-  <text x="10" y="150" class="sub-text">Dropped Frames: 0</text>
-  <text x="10" y="170" class="sub-text highlight">AI Recommendation: Stable Monitoring</text>
+  <text x="15" y="40" class="panel-text" font-weight="600">INPUT STREAM</text>
+  <circle cx="230" cy="35" r="6" class="satellite-blink">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="1.2s" repeatCount="indefinite"/>
+  </circle>
+  <text x="15" y="70" class="sub-text">Status: Active</text>
+  <text x="15" y="90" class="sub-text">FPS: 30</text>
+  <text x="15" y="110" class="sub-text">Resolution: 1920x1080</text>
+  <text x="15" y="130" class="sub-text">Tracked Objects: 12</text>
+  <text x="15" y="150" class="sub-text">Dropped Frames: 0</text>
+  <text x="15" y="170" class="sub-text highlight">AI Recommendation: Stable Monitoring</text>
 </g>
 
 <!-- Right: Threat Engine -->
 <g transform="translate(1150,240)">
   <rect x="0" y="0" width="260" height="320" fill="#1A0F1F" rx="20" opacity="0.35"/>
   <rect width="260" height="320" class="panel"/>
-  <text x="10" y="40" class="panel-text" font-weight="600">THREAT ENGINE</text>
-  <text x="10" y="70" class="sub-text">Panic Index: 0.62</text>
-  <text x="10" y="90" class="sub-text">State: HIGH</text>
-  <text x="10" y="110" class="sub-text">DVR: ARMED</text>
-  <text x="10" y="130" class="sub-text">Top Anomaly: Crowd Surge</text>
-  <text x="10" y="150" class="sub-text">Predicted Escalation: +12%</text>
-  <text x="10" y="170" class="sub-text">Recent Alerts: 3</text>
-  <text x="10" y="190" class="sub-text highlight">AI Recommendation: Monitor Closely</text>
+  <text x="15" y="40" class="panel-text" font-weight="600">THREAT ENGINE</text>
+  <circle cx="230" cy="35" r="6" class="satellite-blink">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="0.8s" repeatCount="indefinite"/>
+  </circle>
+  <text x="15" y="70" class="sub-text">Panic Index: 0.62</text>
+  <text x="15" y="90" class="sub-text">State: HIGH</text>
+  <text x="15" y="110" class="sub-text">DVR: ARMED</text>
+  <text x="15" y="130" class="sub-text">Top Anomaly: Crowd Surge</text>
+  <text x="15" y="150" class="sub-text">Predicted Escalation: +12%</text>
+  <text x="15" y="170" class="sub-text">Recent Alerts: 3</text>
+  <text x="15" y="190" class="sub-text highlight">AI Recommendation: Monitor Closely</text>
 
   <!-- Thermal Bars -->
   <g>
@@ -107,13 +139,13 @@
 
 <!-- ================= SATELLITES ORBITS ================= -->
 <g transform="translate(800,450)">
-  <circle cx="0" cy="-180" r="8" class="satellite">
+  <circle cx="0" cy="-180" r="8" class="satellite-blink">
     <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="10s" repeatCount="indefinite"/>
   </circle>
-  <circle cx="0" cy="120" r="6" class="satellite">
+  <circle cx="0" cy="120" r="6" class="satellite-blink">
     <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="12s" repeatCount="indefinite"/>
   </circle>
-  <circle cx="0" cy="-240" r="5" class="satellite">
+  <circle cx="0" cy="-240" r="5" class="satellite-blink">
     <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="14s" repeatCount="indefinite"/>
   </circle>
 </g>
@@ -129,15 +161,36 @@
   <animate attributeName="stroke-dashoffset" values="0;50;0" dur="3s" repeatCount="indefinite"/>
 </path>
 
+<!-- ================= HOLOGRAPHIC DATA STREAMS ================= -->
+<path d="M800,450 C500,400 200,380 200,400" class="data-stream">
+  <animate attributeName="stroke-dashoffset" values="0;60;0" dur="3s" repeatCount="indefinite"/>
+</path>
+<path d="M800,450 C1100,420 1350,410 1400,450" class="data-stream">
+  <animate attributeName="stroke-dashoffset" values="0;60;0" dur="2.8s" repeatCount="indefinite"/>
+</path>
+<path d="M800,450 C900,420 1150,380 1200,400" class="data-stream">
+  <animate attributeName="stroke-dashoffset" values="0;60;0" dur="3.2s" repeatCount="indefinite"/>
+</path>
+
 <!-- ================= COMMAND DASHBOARD ================= -->
 <g transform="translate(440,680)">
   <rect width="720" height="140" class="panel"/>
   <text x="360" y="30" text-anchor="middle" fill="#FFFFFF" font-size="18" font-weight="600">COMMAND DASHBOARD</text>
-  <text x="30" y="60" class="sub-text">AI Core Load: 78%</text>
-  <text x="30" y="80" class="sub-text">Threat Escalation: 62%</text>
-  <text x="30" y="100" class="sub-text">Input Stream Health: Optimal</text>
-  <text x="30" y="120" class="sub-text">Neural Pulse Activity: High</text>
-  <text x="30" y="140" class="sub-text highlight">DVR Status: ARMED</text>
+
+  <circle cx="50" cy="55" r="6" class="icon"/>
+  <text x="70" y="60" class="sub-text">AI Core Load: 78%</text>
+
+  <circle cx="50" cy="75" r="6" class="icon"/>
+  <text x="70" y="80" class="sub-text">Threat Escalation: 62%</text>
+
+  <circle cx="50" cy="95" r="6" class="icon"/>
+  <text x="70" y="100" class="sub-text">Input Stream Health: Optimal</text>
+
+  <circle cx="50" cy="115" r="6" class="icon"/>
+  <text x="70" y="120" class="sub-text">Neural Pulse Activity: High</text>
+
+  <circle cx="50" cy="135" r="6" class="icon"/>
+  <text x="70" y="140" class="sub-text highlight">DVR Status: ARMED</text>
 </g>
 
 </svg>
