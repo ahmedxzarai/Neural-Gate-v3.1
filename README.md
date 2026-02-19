@@ -105,8 +105,8 @@ This enables detection of emergent instability rather than isolated anomalies.
 
 # 🚨 Deterministic Threat Escalation
 
-### 🚨 Threat State Machine
-The system transitions between operational states based on the calculated *Panic Index ($P$)*:
+### 🛡️ Threat Management Protocol
+The system transitions between operational states based on the calculated **Panic Index ($P$)**:
 
 ```mermaid
 graph LR
@@ -121,7 +121,7 @@ graph LR
     C -- "Manual Override" --> S
     H -- "Cool Down" --> S
 
-    %% Styling for Premium Look
+    %% Styling
     style S fill:#161B22,stroke:#00F0FF,stroke-width:2px,color:#E2E8F0
     style H fill:#161B22,stroke:#FFA500,stroke-width:3px,color:#E2E8F0
     style C fill:#161B22,stroke:#FF3E3E,stroke-width:4px,color:#FF3E3E
@@ -137,7 +137,7 @@ graph LR
 | *HIGH* | $0.4 \leq P < 0.8$ | Analytics Warning | 🟠 Pulsing Orange | *ARMED* |
 | *CRITICAL* | $P \geq 0.8$ | Autonomous Response | 🔴 Flashing Red | *RECORDING* |
 
-# 🎥 Autonomous Incident Capture
+##### 🎥 Autonomous Incident Capture
 
 When:
 ```text
